@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Muhammad Shayan Gul | Cybersecurity student, CEH certified</title>
+<meta name="description" content="Cybersecurity student at Howest and Certified Ethical Hacker. Pentest with 24 findings, SSH honeypot with ELK, Windows and Linux servers, firewalls, Proxmox, VMware and Kubernetes. Available for a 6-month internship.">
+<meta property="og:title" content="Muhammad Shayan Gul | Cybersecurity student, CEH certified">
+<meta property="og:description" content="Pentesting, honeypots and monitoring, servers, firewalls and virtualisation. Available for a 6-month internship.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#060a12">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23060a12'/%3E%3Cpath d='M14 22l14 10-14 10' fill='none' stroke='%235ef2d0' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M34 44h18' stroke='%235ef2d0' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#060a12;--panel:#0b1220;--panel2:#0f192c;--line:#1d2b44;
+  --text:#d8e3f2;--muted:#8a9bb5;
+  --mint:#5ef2d0;--blue:#7fb2ff;--amber:#ffbe5c;--violet:#c4a5ff;--red:#ff6b6b;
+  --critical:#ff5470;--high:#ff9f43;--medium:#ffd24a;--low:#4cd98a;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:1.0625rem;line-height:1.6}
+a{color:var(--mint);text-underline-offset:3px}
+a:hover{color:#fff}
+:focus-visible{outline:3px solid var(--mint);outline-offset:3px;border-radius:2px}
+code{font-family:var(--mono);font-size:.88em;color:var(--mint)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--mint);color:#04120e;padding:8px 14px;z-index:30;font-weight:600}
+.skip:focus{left:8px}
+
+/* header */
+.top{position:sticky;top:0;z-index:20;background:rgba(6,10,18,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px 20px;min-height:56px;flex-wrap:wrap;padding-top:6px;padding-bottom:6px}
+.brand{font-family:var(--mono);font-weight:700;font-size:.95rem;color:var(--text);text-decoration:none}
+.brand span{color:var(--mint)}
+.top nav{display:flex;gap:18px;flex-wrap:wrap;align-items:center;font-family:var(--mono);font-size:.82rem}
+.top nav a{color:var(--muted);text-decoration:none}
+.top nav a:hover,.top nav a[aria-current="true"]{color:var(--mint)}
+.top nav a.nav-cta{color:#04120e;background:var(--mint);padding:6px 12px;border-radius:4px;font-weight:700}
+.top nav a.nav-cta:hover{background:#9ff7e2;color:#04120e}
+
+/* hero */
+.hero{position:relative;padding:64px 0 56px;background:
+  radial-gradient(900px 380px at 12% -10%,rgba(94,242,208,.10),transparent 60%),
+  linear-gradient(var(--line) 1px,transparent 1px) 0 0/48px 48px,
+  linear-gradient(90deg,var(--line) 1px,transparent 1px) 0 0/48px 48px;
+  background-color:var(--bg)}
+.hero::after{content:"";position:absolute;inset:auto 0 0 0;height:140px;background:linear-gradient(transparent,var(--bg));pointer-events:none}
+.hero .wrap{position:relative;z-index:1}
+h1{font-family:var(--mono);font-weight:700;font-size:clamp(1.7rem,4.2vw,2.9rem);line-height:1.2;letter-spacing:-.02em;margin:0 0 20px;max-width:24ch}
+.lede{font-size:1.15rem;color:var(--muted);max-width:60ch;margin:0 0 28px}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-block;padding:11px 18px;border-radius:4px;font-family:var(--mono);font-weight:500;font-size:.92rem;text-decoration:none;border:1px solid var(--mint);color:var(--mint);background:transparent;cursor:pointer}
+.btn:hover{background:rgba(94,242,208,.12);color:#fff}
+.btn.primary{background:var(--mint);color:#04120e;font-weight:700}
+.btn.primary:hover{background:#9ff7e2;color:#04120e}
+.snap{list-style:none;margin:28px 0 0;padding:0;display:grid;gap:10px}
+@media (min-width:760px){.snap{grid-template-columns:1fr 1fr}}
+.snap li{padding:10px 14px;border-left:3px solid var(--mint);background:rgba(11,18,32,.75);font-size:.96rem;color:var(--muted)}
+.snap strong{color:var(--text)}
+
+/* terminal: the one memorable element */
+.term{margin-top:36px;background:#050810;border:1px solid var(--line);border-radius:8px;box-shadow:0 0 0 1px rgba(94,242,208,.06),0 24px 60px rgba(0,0,0,.55);overflow:hidden}
+.term-bar{display:flex;justify-content:space-between;align-items:center;padding:9px 14px;border-bottom:1px solid var(--line);background:var(--panel);font-family:var(--mono);font-size:.8rem;color:var(--muted)}
+.term-bar button{font:inherit;background:none;border:1px solid var(--line);color:var(--muted);padding:2px 10px;border-radius:3px;cursor:pointer}
+.term-bar button:hover{color:var(--mint);border-color:var(--mint)}
+.term-body{padding:16px 18px;font-family:var(--mono);font-size:.88rem;line-height:1.65}
+#out{max-height:320px;overflow-y:auto;margin-bottom:8px;scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+#out p{margin:0;white-space:pre-wrap;word-break:break-word}
+#out .ok{color:var(--mint)}
+#out .dim{color:var(--muted)}
+#out .warn{color:var(--amber)}
+#out .cmd{color:var(--text)}
+#out .cmd b{color:var(--mint);font-weight:500}
+#out a{color:var(--mint)}
+.prompt{display:flex;gap:8px;align-items:center}
+.prompt label{color:var(--mint);white-space:nowrap}
+.prompt input{flex:1;min-width:0;background:transparent;border:0;color:var(--text);font:inherit;caret-color:var(--mint);padding:2px 0}
+.prompt input:focus{outline:none}
+.prompt:focus-within{outline:1px solid var(--line);outline-offset:4px;border-radius:2px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.chips button{font-family:var(--mono);font-size:.78rem;background:var(--panel);border:1px solid var(--line);color:var(--text);padding:4px 10px;border-radius:999px;cursor:pointer}
+.chips button:hover{border-color:var(--mint);color:var(--mint)}
+
+/* sections */
+section{padding:72px 0;border-top:1px solid var(--line)}
+h2{font-family:var(--mono);font-size:1.5rem;margin:0 0 8px;font-weight:700}
+h2::before{content:"~/";color:var(--mint)}
+.intro{color:var(--muted);max-width:68ch;margin:0 0 28px}
+
+/* badges */
+.b{display:inline-block;font-family:var(--mono);font-size:.72rem;line-height:1;padding:4px 7px;border-radius:3px;border:1px solid currentColor;white-space:nowrap}
+.b.built{color:var(--mint)}
+.b.lab{color:var(--blue)}
+.b.studied{color:var(--amber)}
+.b.concept{color:var(--violet)}
+.legend{display:grid;gap:10px;margin:0 0 28px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:6px}
+@media (min-width:760px){.legend{grid-template-columns:repeat(4,1fr)}}
+.legend div{font-size:.92rem;color:var(--muted)}
+.legend .b{margin-bottom:6px}
+
+/* start here */
+.trio{display:grid;gap:16px;grid-template-columns:minmax(0,1fr)}
+@media (min-width:900px){.trio{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.pick{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:22px;display:flex;flex-direction:column;gap:8px;align-items:flex-start;min-width:0}
+.pick h3{margin:8px 0 0;font-size:1.15rem;line-height:1.3}
+.pick p{margin:0;color:var(--muted);font-size:.98rem}
+.pick .proof{color:var(--text);font-weight:600}
+.pick .go{margin-top:auto;padding-top:10px;font-family:var(--mono);font-size:.85rem;color:var(--mint);background:none;border:0;cursor:pointer;text-decoration:underline;text-underline-offset:4px;text-align:left}
+.pick .go:hover{color:#fff}
+
+/* pentest */
+.steps{list-style:none;counter-reset:s;margin:0 0 32px;padding:0;display:grid;gap:10px}
+@media (min-width:900px){.steps{grid-template-columns:repeat(5,1fr)}}
+.steps li{counter-increment:s;background:var(--panel);border:1px solid var(--line);border-top:3px solid var(--mint);border-radius:4px;padding:12px 14px;display:grid;gap:4px;font-size:.92rem}
+.steps li::before{content:counter(s);font-family:var(--mono);font-size:.8rem;color:var(--mint)}
+.steps strong{font-weight:600}
+.steps span{color:var(--muted)}
+.pt{display:grid;gap:28px;align-items:start;grid-template-columns:minmax(0,1fr)}
+@media (min-width:900px){.pt{grid-template-columns:260px minmax(0,1fr)}}
+.pt>*{min-width:0}
+.pt-side{display:grid;gap:18px;justify-items:center}
+.donut{width:100%;max-width:220px;height:auto}
+.donut .dn{fill:var(--text);font:700 34px var(--mono)}
+.donut .dl{fill:var(--muted);font:400 12px var(--sans)}
+.sevf{display:grid;gap:6px;width:100%}
+.sevf button{display:grid;grid-template-columns:14px 1fr auto;gap:10px;align-items:center;font:inherit;font-size:.92rem;padding:8px 12px;background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:4px;cursor:pointer;text-align:left}
+.sevf button:first-child{grid-template-columns:1fr auto}
+.sevf button b{font-family:var(--mono);font-weight:500}
+.sevf button[aria-pressed="true"]{border-color:var(--mint);background:var(--panel2)}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block;background:currentColor}
+.dot.critical,.sev.critical,.bar.critical{color:var(--critical)}
+.dot.high,.sev.high,.bar.high{color:var(--high)}
+.dot.medium,.sev.medium,.bar.medium{color:var(--medium)}
+.dot.low,.sev.low,.bar.low{color:var(--low)}
+.count{margin:0 0 10px;color:var(--muted);font-size:.9rem}
+.tscroll{overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:var(--panel)}
+#ft{width:100%;min-width:560px;border-collapse:collapse;font-size:.95rem}
+#ft th{text-align:left;font-family:var(--mono);font-size:.78rem;font-weight:500;color:var(--muted);padding:10px 14px;border-bottom:1px solid var(--line);background:var(--panel2)}
+#ft td{padding:9px 14px;border-top:1px solid var(--line);vertical-align:middle}
+#ft tbody tr:first-child td{border-top:0}
+.sev{font-family:var(--mono);font-size:.78rem;font-weight:500}
+.cv{white-space:nowrap}
+.cv .bar{display:inline-block;width:64px;height:6px;margin-right:10px;border-radius:3px;background:linear-gradient(90deg,currentColor var(--w),var(--line) var(--w));vertical-align:middle}
+.cv .n{font-family:var(--mono);font-size:.88rem}
+#ft a{font-family:var(--mono);font-size:.85rem}
+h3.sub{font-family:var(--mono);font-size:1.05rem;color:var(--mint);margin:40px 0 12px}
+.patterns{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+@media (min-width:900px){.patterns{grid-template-columns:1fr 1fr}}
+.patterns li{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--mint);border-radius:4px;padding:14px 16px;font-size:.98rem;color:var(--muted)}
+.patterns strong{color:var(--text)}
+
+/* filter bars */
+.fbar{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 20px}
+.fbar button{font-family:var(--mono);font-size:.8rem;padding:6px 14px;border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:999px;cursor:pointer}
+.fbar button[aria-pressed="true"]{background:var(--mint);color:#04120e;border-color:var(--mint);font-weight:700}
+
+/* project cards */
+.grid{display:grid;gap:16px;align-items:start;grid-template-columns:minmax(0,1fr)}
+@media (min-width:900px){.grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+.grid>*{min-width:0}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:6px}
+.card[hidden]{display:none}
+.card[open]{border-color:rgba(94,242,208,.45)}
+.card summary{list-style:none;cursor:pointer;padding:18px 20px;display:grid;grid-template-columns:1fr auto;gap:8px 14px}
+.card summary::-webkit-details-marker{display:none}
+.card summary::after{content:"+";grid-column:2;grid-row:1 / span 3;align-self:center;font-family:var(--mono);font-size:1.4rem;color:var(--muted);width:24px;text-align:center}
+.card[open] summary::after{content:"\2212";color:var(--mint)}
+.card .meta{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:.85rem;color:var(--muted)}
+.card h3{margin:0;font-size:1.15rem;line-height:1.3;font-weight:600}
+.card .one{margin:0;color:var(--muted);font-size:.98rem}
+.card .body{padding:2px 20px 20px;border-top:1px solid var(--line)}
+.card ul{margin:14px 0 0;padding-left:20px}
+.card li{margin:0 0 8px}
+.tools{margin:16px 0 0;font-family:var(--mono);font-size:.8rem;color:var(--muted)}
+.tools strong{color:var(--text);font-weight:500}
+.note{margin:14px 0 0;padding:10px 14px;border-left:3px solid var(--amber);background:var(--panel2);font-size:.95rem;color:var(--muted)}
+.more{margin:14px 0 0;font-size:.95rem}
+
+/* screenshots and diagrams */
+.thumb{display:block;width:100%;padding:0;border:0;background:#05080f;cursor:zoom-in;overflow:hidden}
+.thumb img{display:block;width:100%;height:auto}
+.shots{display:grid;gap:12px;margin:16px 0 0;grid-template-columns:minmax(0,1fr)}
+@media (min-width:560px){.shots{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.shots .thumb{border:1px solid var(--line);border-radius:6px}
+.shots figcaption{margin-top:6px;font-size:.84rem;color:var(--muted)}
+.shots figure{margin:0}
+.diagram{margin:18px 0 0}
+.dscroll{overflow-x:auto;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:10px}
+.dg{display:block;width:100%;min-width:560px;height:auto}
+.dg .bx{fill:var(--panel2);stroke:var(--line);stroke-width:1.5}
+.dg .bx.hl{stroke:var(--mint)}
+.dg .bx.dsh{stroke-dasharray:6 4}
+.dg .zone{fill:none;stroke:var(--blue);stroke-width:1.5;stroke-dasharray:3 5}
+.dg .tx{fill:var(--text);font:600 14px var(--sans)}
+.dg .sm{fill:var(--muted);font:400 12px var(--sans)}
+.dg .ln{stroke:var(--muted);stroke-width:1.5;fill:none}
+.dg .ln.dash{stroke-dasharray:5 4}
+.dg marker path{fill:var(--muted)}
+.diagram figcaption{margin-top:6px;color:var(--muted);font-size:.85rem}
+
+/* proof gallery */
+.gal{display:grid;gap:16px;grid-template-columns:minmax(0,1fr)}
+@media (min-width:700px){.gal{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (min-width:1000px){.gal{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.shot{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:6px;overflow:hidden;min-width:0}
+.shot[hidden]{display:none}
+.shot .thumb{aspect-ratio:16/10}
+.shot .thumb img{width:100%;height:100%;object-fit:cover;object-position:top left}
+.shot.contain .thumb img{object-fit:contain;object-position:center}
+.shot figcaption{padding:14px 16px 16px}
+.shot h3{margin:6px 0 4px;font-size:1rem;line-height:1.3}
+.shot p{margin:0;color:var(--muted);font-size:.92rem}
+
+/* labs tabs */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 -1px;position:relative;z-index:1}
+.tabs button{font-family:var(--mono);font-size:.8rem;background:var(--panel);color:var(--muted);border:1px solid var(--line);padding:9px 13px;border-radius:6px 6px 0 0;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--panel2);color:var(--mint);border-bottom-color:var(--panel2)}
+.tabs button:hover{color:var(--text)}
+.panel{background:var(--panel2);border:1px solid var(--line);border-radius:0 6px 6px 6px;padding:26px 24px}
+.panel[hidden]{display:none}
+.panel h3{margin:0 0 6px;font-size:1.25rem}
+.panel .sum{color:var(--muted);margin:0 0 20px;max-width:68ch}
+.items{list-style:none;margin:0;padding:0}
+.items li{display:grid;grid-template-columns:66px 1fr;gap:14px;padding:10px 0;border-top:1px solid var(--line);align-items:baseline}
+.items li:first-child{border-top:0;padding-top:0}
+@media (max-width:560px){.items li{grid-template-columns:1fr;gap:6px}}
+
+/* certificates */
+.certs{display:grid;gap:20px;grid-template-columns:minmax(0,1fr)}
+@media (min-width:860px){.certs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.cert{background:var(--panel);border:1px solid var(--line);border-radius:6px;overflow:hidden;margin:0}
+.cert .thumb{background:#fff}
+.cert figcaption{padding:16px 18px 18px}
+.cert h3{margin:0 0 6px;font-size:1.1rem}
+.cert p{margin:0 0 8px;color:var(--muted);font-size:.96rem}
+.cert .link{font-family:var(--mono);font-size:.82rem}
+.edu{margin-top:40px}
+.edu h3{font-family:var(--mono);font-size:1.05rem;margin:0 0 12px;color:var(--mint)}
+.edu ul{margin:0;padding:0;list-style:none}
+.edu li{padding:12px 0;border-top:1px solid var(--line);display:grid;gap:2px}
+.edu li:first-child{border-top:0}
+.edu .when{color:var(--muted);font-size:.9rem}
+.pending-note{color:var(--muted);font-size:.95rem;margin:20px 0 0}
+
+/* skills */
+.skills{display:grid;gap:0}
+.skills .s{display:grid;gap:8px;padding:16px 0;border-top:1px solid var(--line)}
+.skills .s:first-child{border-top:0}
+@media (min-width:760px){.skills .s{grid-template-columns:200px 1fr;gap:24px}}
+.skills h3{margin:0;font-family:var(--mono);font-size:.92rem;font-weight:500;color:var(--mint)}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
+.tags li{font-family:var(--mono);font-size:.78rem;padding:4px 9px;border:1px solid var(--line);border-radius:3px;background:var(--panel);color:var(--text)}
+
+/* contact + footer */
+.about{margin:0 0 8px}
+.about p{max-width:70ch;margin:0 0 14px}
+.contact>p{max-width:58ch;margin:0 0 24px}
+.footer{border-top:1px solid var(--line);padding:28px 0 48px;color:var(--muted);font-size:.88rem;font-family:var(--mono)}
+
+/* lightbox */
+dialog{border:1px solid var(--line);background:var(--panel);padding:14px;width:min(1100px,95vw);max-height:94vh;border-radius:8px;color:var(--text)}
+dialog::backdrop{background:rgba(0,0,0,.82)}
+dialog img{display:block;max-width:100%;max-height:70vh;margin:0 auto;background:#fff}
+#lb-cap{margin:12px 0 0;text-align:center;color:var(--muted);font-size:.95rem}
+.lb-nav{display:flex;gap:10px;justify-content:center;margin-top:12px;flex-wrap:wrap}
+.lb-nav .btn{padding:8px 14px}
+.lb-nav [hidden]{display:none}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top">shayan<span>@</span>cyberlab</a>
+    <nav aria-label="Sections">
+      <a href="#pentest">pentest</a>
+      <a href="#projects">projects</a>
+      <a href="#proof">proof</a>
+      <a href="#labs">labs</a>
+      <a href="#certs">certs</a>
+      <a href="#skills">skills</a>
+      <a href="#contact">contact</a>
+      <a class="nav-cta" href="mailto:shayann2326@gmail.com">Email me</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<div class="hero" id="top">
+  <div class="wrap">
+    <h1>I test systems for weaknesses, then build the monitoring that catches the next attack.</h1>
+    <p class="lede">Muhammad Shayan Gul. Final-year cybersecurity student at Howest in Bruges and Certified Ethical Hacker. Available for a full-time 6-month internship, with a Howest agreement ready.</p>
+    <div class="actions">
+      <a class="btn primary" href="mailto:shayann2326@gmail.com">Email me</a>
+      <a class="btn" href="cv.pdf" download>Download CV</a>
+      <a class="btn" href="#certs">View certificates</a>
+    </div>
+
+    <ul class="snap" aria-label="At a glance">
+      <li><strong>Certified.</strong> CEH and Cisco CyberOps Associate. Security+ in progress.</li>
+      <li><strong>Tested.</strong> An internal IT/OT pentest: 24 findings, 6 of them critical.</li>
+      <li><strong>Defended.</strong> A Cowrie SSH honeypot feeding Elasticsearch and Kibana, plus Suricata, Wazuh and Splunk.</li>
+      <li><strong>Built.</strong> Windows domains, Linux servers, Proxmox, VMware, Kubernetes on Talos and three clouds.</li>
+    </ul>
+
+    <div class="term" role="region" aria-label="Interactive terminal">
+      <div class="term-bar"><span>shayan@cyberlab: ~</span><button type="button" id="skip" aria-label="Skip the intro animation">skip intro</button></div>
+      <div class="term-body">
+        <div id="out" aria-live="polite"></div>
+        <form class="prompt" id="form" autocomplete="off">
+          <label for="cmd">shayan@cyberlab:~$</label>
+          <input id="cmd" type="text" spellcheck="false" autocapitalize="off" autocorrect="off" aria-label="Type a command, for example help">
+        </form>
+        <div class="chips" aria-label="Quick commands">
+          <button type="button" data-run="help">help</button>
+          <button type="button" data-run="whoami">whoami</button>
+          <button type="button" data-run="findings">findings</button>
+          <button type="button" data-run="projects">projects</button>
+          <button type="button" data-run="proof">proof</button>
+          <button type="button" data-run="contact">contact</button>
+        </div>
+        <noscript><p class="dim">The terminal needs JavaScript. Everything in it is also on this page below.</p></noscript>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="start" aria-labelledby="h-start">
+  <div class="wrap">
+    <h2 id="h-start">start here</h2>
+    <p class="intro">Short on time? These three pieces of work show testing, defence and mobile security.</p>
+    <div class="trio">
+      <article class="pick">
+        <span class="b lab">lab</span>
+        <h3>Internal IT/OT penetration test</h3>
+        <p class="proof">24 findings, 6 of them critical.</p>
+        <p>A full test from recon to a client-style report with CVSS, CWE and fixes.</p>
+        <a class="go" href="#pentest">See every finding</a>
+      </article>
+      <article class="pick">
+        <span class="b built">built</span>
+        <h3>Honeypot system with ELK</h3>
+        <p class="proof">A Cowrie SSH honeypot and a hardened Laravel app.</p>
+        <p>Logs flow through Filebeat into Elasticsearch and Kibana, with Splunk and Wazuh for triage.</p>
+        <button type="button" class="go" data-open="honeypot">Open the project</button>
+      </article>
+      <article class="pick">
+        <span class="b lab">lab</span>
+        <h3>Android mobile security assessment</h3>
+        <p class="proof">Static and dynamic analysis, plus a Frida bypass.</p>
+        <p>Decompiled an app, watched it at runtime on a rooted emulator and tested its API.</p>
+        <button type="button" class="go" data-open="mobile">Open the project</button>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="pentest" aria-labelledby="h-pentest">
+  <div class="wrap">
+    <h2 id="h-pentest">pentest</h2>
+    <p class="intro">Findings from my team's internal penetration test of a simulated IT/OT network at Howest. Hostnames and addresses are left out. Select a severity to filter the list.</p>
+
+    <ol class="steps" aria-label="Test method">
+      <li><strong>Reconnaissance</strong><span>Map the network and what it exposes.</span></li>
+      <li><strong>Scanning</strong><span>Find live services and known weaknesses.</span></li>
+      <li><strong>Enumeration</strong><span>Pull detail out of the services found.</span></li>
+      <li><strong>Exploitation</strong><span>Prove that a weakness can really be used.</span></li>
+      <li><strong>Reporting</strong><span>Write each finding with CVSS, CWE, risk and fix.</span></li>
+    </ol>
+
+    <div class="pt">
+      <div class="pt-side">
+        <svg class="donut" viewBox="0 0 200 200" role="img" aria-label="Severity of the 24 findings: 6 critical, 7 high, 9 medium, 2 low"><circle cx="100" cy="100" r="70" fill="none" stroke="var(--line)" stroke-width="26"/><circle cx="100" cy="100" r="70" fill="none" stroke="var(--critical)" stroke-width="26" stroke-dasharray="107.96 331.87" stroke-dashoffset="0.00" transform="rotate(-90 100 100)"/><circle cx="100" cy="100" r="70" fill="none" stroke="var(--high)" stroke-width="26" stroke-dasharray="126.28 313.54" stroke-dashoffset="-109.96" transform="rotate(-90 100 100)"/><circle cx="100" cy="100" r="70" fill="none" stroke="var(--medium)" stroke-width="26" stroke-dasharray="162.93 276.89" stroke-dashoffset="-238.24" transform="rotate(-90 100 100)"/><circle cx="100" cy="100" r="70" fill="none" stroke="var(--low)" stroke-width="26" stroke-dasharray="34.65 405.17" stroke-dashoffset="-403.17" transform="rotate(-90 100 100)"/><text x="100" y="102" text-anchor="middle" class="dn">24</text><text x="100" y="122" text-anchor="middle" class="dl">findings</text></svg>
+        <div class="sevf" role="group" aria-label="Filter findings by severity">
+          <button type="button" data-sev="all" aria-pressed="true"><span>All</span><b>24</b></button>
+          <button type="button" data-sev="critical" aria-pressed="false"><i class="dot critical"></i><span>Critical</span><b>6</b></button>
+          <button type="button" data-sev="high" aria-pressed="false"><i class="dot high"></i><span>High</span><b>7</b></button>
+          <button type="button" data-sev="medium" aria-pressed="false"><i class="dot medium"></i><span>Medium</span><b>9</b></button>
+          <button type="button" data-sev="low" aria-pressed="false"><i class="dot low"></i><span>Low</span><b>2</b></button>
+        </div>
+      </div>
+      <div class="pt-main">
+        <p class="count" id="count" aria-live="polite">Showing all 24 findings, highest CVSS first.</p>
+        <div class="tscroll">
+          <table id="ft">
+            <thead><tr><th scope="col">Vulnerability</th><th scope="col">Severity</th><th scope="col">CVSS</th><th scope="col">CWE</th></tr></thead>
+            <tbody>
+<tr data-sev="critical" data-score="9.8"><td>Unauthenticated OS Command Injection</td><td><span class="sev critical">Critical</span></td><td class="cv"><span class="bar critical" style="--w:98%"></span><span class="n">9.8</span></td><td><a href="https://cwe.mitre.org/data/definitions/78.html" rel="noopener">CWE-78</a></td></tr>
+<tr data-sev="critical" data-score="9.8"><td>Unauthenticated iSCSI Access</td><td><span class="sev critical">Critical</span></td><td class="cv"><span class="bar critical" style="--w:98%"></span><span class="n">9.8</span></td><td><a href="https://cwe.mitre.org/data/definitions/306.html" rel="noopener">CWE-306</a></td></tr>
+<tr data-sev="critical" data-score="9.8"><td>Unauthenticated Elasticsearch Exposure</td><td><span class="sev critical">Critical</span></td><td class="cv"><span class="bar critical" style="--w:98%"></span><span class="n">9.8</span></td><td><a href="https://cwe.mitre.org/data/definitions/200.html" rel="noopener">CWE-200</a></td></tr>
+<tr data-sev="critical" data-score="9.4"><td>Unauthenticated Admin Access</td><td><span class="sev critical">Critical</span></td><td class="cv"><span class="bar critical" style="--w:94%"></span><span class="n">9.4</span></td><td><a href="https://cwe.mitre.org/data/definitions/306.html" rel="noopener">CWE-306</a></td></tr>
+<tr data-sev="critical" data-score="9.1"><td>Public NFS Shares</td><td><span class="sev critical">Critical</span></td><td class="cv"><span class="bar critical" style="--w:91%"></span><span class="n">9.1</span></td><td><a href="https://cwe.mitre.org/data/definitions/732.html" rel="noopener">CWE-732</a></td></tr>
+<tr data-sev="critical" data-score="9.1"><td>Sensitive Data Disclosure Through Elasticsearch</td><td><span class="sev critical">Critical</span></td><td class="cv"><span class="bar critical" style="--w:91%"></span><span class="n">9.1</span></td><td><a href="https://cwe.mitre.org/data/definitions/200.html" rel="noopener">CWE-200</a></td></tr>
+<tr data-sev="high" data-score="8.1"><td>SMBv1 Enabled</td><td><span class="sev high">High</span></td><td class="cv"><span class="bar high" style="--w:81%"></span><span class="n">8.1</span></td><td><a href="https://cwe.mitre.org/data/definitions/937.html" rel="noopener">CWE-937</a></td></tr>
+<tr data-sev="high" data-score="8.1"><td>Anonymous FTP Access Enabled</td><td><span class="sev high">High</span></td><td class="cv"><span class="bar high" style="--w:81%"></span><span class="n">8.1</span></td><td><a href="https://cwe.mitre.org/data/definitions/284.html" rel="noopener">CWE-284</a></td></tr>
+<tr data-sev="high" data-score="8.0"><td>DNS Zone Transfer</td><td><span class="sev high">High</span></td><td class="cv"><span class="bar high" style="--w:80%"></span><span class="n">8.0</span></td><td><a href="https://cwe.mitre.org/data/definitions/200.html" rel="noopener">CWE-200</a></td></tr>
+<tr data-sev="high" data-score="8.0"><td>Exposed LG SuperSign Management Platform</td><td><span class="sev high">High</span></td><td class="cv"><span class="bar high" style="--w:80%"></span><span class="n">8.0</span></td><td><a href="https://cwe.mitre.org/data/definitions/284.html" rel="noopener">CWE-284</a></td></tr>
+<tr data-sev="high" data-score="7.5"><td>Management Platform Served Over HTTP</td><td><span class="sev high">High</span></td><td class="cv"><span class="bar high" style="--w:75%"></span><span class="n">7.5</span></td><td><a href="https://cwe.mitre.org/data/definitions/319.html" rel="noopener">CWE-319</a></td></tr>
+<tr data-sev="high" data-score="7.5"><td>Sensitive Application Information Disclosure</td><td><span class="sev high">High</span></td><td class="cv"><span class="bar high" style="--w:75%"></span><span class="n">7.5</span></td><td><a href="https://cwe.mitre.org/data/definitions/200.html" rel="noopener">CWE-200</a></td></tr>
+<tr data-sev="high" data-score="7.5"><td>Exposed Legacy SharePoint Interfaces</td><td><span class="sev high">High</span></td><td class="cv"><span class="bar high" style="--w:75%"></span><span class="n">7.5</span></td><td><a href="https://cwe.mitre.org/data/definitions/749.html" rel="noopener">CWE-749</a></td></tr>
+<tr data-sev="medium" data-score="5.9"><td>Expired Self-Signed Certificate</td><td><span class="sev medium">Medium</span></td><td class="cv"><span class="bar medium" style="--w:59%"></span><span class="n">5.9</span></td><td><a href="https://cwe.mitre.org/data/definitions/295.html" rel="noopener">CWE-295</a></td></tr>
+<tr data-sev="medium" data-score="5.8"><td>Administrative Backup Infrastructure Exposure</td><td><span class="sev medium">Medium</span></td><td class="cv"><span class="bar medium" style="--w:58%"></span><span class="n">5.8</span></td><td><a href="https://cwe.mitre.org/data/definitions/284.html" rel="noopener">CWE-284</a></td></tr>
+<tr data-sev="medium" data-score="5.4"><td>Administrative Services Exposed</td><td><span class="sev medium">Medium</span></td><td class="cv"><span class="bar medium" style="--w:54%"></span><span class="n">5.4</span></td><td><a href="https://cwe.mitre.org/data/definitions/668.html" rel="noopener">CWE-668</a></td></tr>
+<tr data-sev="medium" data-score="5.3"><td>XML-RPC Enabled</td><td><span class="sev medium">Medium</span></td><td class="cv"><span class="bar medium" style="--w:53%"></span><span class="n">5.3</span></td><td><a href="https://cwe.mitre.org/data/definitions/693.html" rel="noopener">CWE-693</a></td></tr>
+<tr data-sev="medium" data-score="5.3"><td>SMB Signing Not Enforced</td><td><span class="sev medium">Medium</span></td><td class="cv"><span class="bar medium" style="--w:53%"></span><span class="n">5.3</span></td><td><a href="https://cwe.mitre.org/data/definitions/300.html" rel="noopener">CWE-300</a></td></tr>
+<tr data-sev="medium" data-score="5.3"><td>Recursive DNS Exposure</td><td><span class="sev medium">Medium</span></td><td class="cv"><span class="bar medium" style="--w:53%"></span><span class="n">5.3</span></td><td><a href="https://cwe.mitre.org/data/definitions/200.html" rel="noopener">CWE-200</a></td></tr>
+<tr data-sev="medium" data-score="5.3"><td>Anonymous SMB Enumeration Allowed</td><td><span class="sev medium">Medium</span></td><td class="cv"><span class="bar medium" style="--w:53%"></span><span class="n">5.3</span></td><td><a href="https://cwe.mitre.org/data/definitions/306.html" rel="noopener">CWE-306</a></td></tr>
+<tr data-sev="medium" data-score="5.3"><td>SSH Password Authentication Enabled</td><td><span class="sev medium">Medium</span></td><td class="cv"><span class="bar medium" style="--w:53%"></span><span class="n">5.3</span></td><td><a href="https://cwe.mitre.org/data/definitions/307.html" rel="noopener">CWE-307</a></td></tr>
+<tr data-sev="medium" data-score="5.3"><td>Administrative SSH Service Exposure</td><td><span class="sev medium">Medium</span></td><td class="cv"><span class="bar medium" style="--w:53%"></span><span class="n">5.3</span></td><td><a href="https://cwe.mitre.org/data/definitions/306.html" rel="noopener">CWE-306</a></td></tr>
+<tr data-sev="low" data-score="3.1"><td>robots.txt Information Disclosure</td><td><span class="sev low">Low</span></td><td class="cv"><span class="bar low" style="--w:31%"></span><span class="n">3.1</span></td><td><a href="https://cwe.mitre.org/data/definitions/200.html" rel="noopener">CWE-200</a></td></tr>
+<tr data-sev="low" data-score="3.1"><td>Technology Fingerprinting Disclosure</td><td><span class="sev low">Low</span></td><td class="cv"><span class="bar low" style="--w:31%"></span><span class="n">3.1</span></td><td><a href="https://cwe.mitre.org/data/definitions/200.html" rel="noopener">CWE-200</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="sub">What the findings show</h3>
+    <ul class="patterns">
+      <li><strong>Missing authentication.</strong> Four of the six critical findings were unauthenticated access: OS command injection, iSCSI, Elasticsearch and an admin interface.</li>
+      <li><strong>Exposed services.</strong> Public NFS shares, a DNS zone transfer, anonymous FTP and SMB enumeration, and exposed administrative and backup services.</li>
+      <li><strong>Weak configuration.</strong> SMBv1 and unsigned SMB, a management platform served over HTTP, SSH password logins and an expired certificate.</li>
+      <li><strong>Information disclosure.</strong> Sensitive data through Elasticsearch, application details, robots.txt and technology fingerprints.</li>
+    </ul>
+    <p class="tools"><strong>Tools:</strong> Nmap, Metasploit, Burp Suite, Nessus, OpenVAS, Wireshark</p>
+  </div>
+</section>
+
+<section id="projects" aria-labelledby="h-projects">
+  <div class="wrap">
+    <h2 id="h-projects">projects</h2>
+    <p class="intro">Open a card for the detail. Each one carries a label that says how deep the experience goes, so nothing here is oversold.</p>
+
+    <div class="legend" aria-label="Label meanings">
+      <div><span class="b built">built</span><br>I implemented it myself or with my team.</div>
+      <div><span class="b lab">lab</span><br>Hands-on coursework or lab work.</div>
+      <div><span class="b studied">studied</span><br>Covered in coursework, not implemented.</div>
+      <div><span class="b concept">concept</span><br>A proposal or design, not finished.</div>
+    </div>
+
+    <div class="fbar" role="group" aria-label="Filter projects by area" id="pf">
+      <button type="button" data-f="all" aria-pressed="true">All</button>
+      <button type="button" data-f="offensive" aria-pressed="false">Offensive</button>
+      <button type="button" data-f="defensive" aria-pressed="false">Defensive</button>
+      <button type="button" data-f="infrastructure" aria-pressed="false">Infrastructure</button>
+      <button type="button" data-f="automation" aria-pressed="false">Automation</button>
+      <button type="button" data-f="software" aria-pressed="false">AI and software</button>
+    </div>
+
+    <div class="grid" id="pgrid">
+
+      <details class="card" data-id="ot-pentest" data-label="lab" data-a="offensive" open>
+        <summary>
+          <div class="meta"><span class="b lab">lab</span><span>Team project, Howest</span></div>
+          <h3>Internal penetration test of an IT/OT network</h3>
+          <p class="one">A full test of a simulated IT/OT environment, from recon to a client-style report.</p>
+        </summary>
+        <div class="body">
+          <ul>
+            <li>Ran the whole workflow: reconnaissance, scanning, enumeration, exploitation and reporting.</li>
+            <li>Found and validated 24 vulnerabilities: 6 critical, 7 high, 9 medium and 2 low. They include exposed Elasticsearch, iSCSI, SMB, FTP and DNS services. <a href="#pentest">See the full list.</a></li>
+            <li>Wrote each finding up with CVSS, CWE, a risk matrix and fixes, so managers and engineers both know what to do next.</li>
+          </ul>
+          <p class="note">Most serious finding: a critical, unauthenticated OS command injection (CVSS 9.8).</p>
+          <p class="tools"><strong>Tools:</strong> Nmap, Metasploit, Burp Suite, Nessus, OpenVAS, Wireshark</p>
+        </div>
+      </details>
+
+      <details class="card" data-id="honeypot" data-label="built" data-a="defensive">
+        <summary>
+          <div class="meta"><span class="b built">built</span><span>Team of four, Howest</span></div>
+          <h3>Honeypot system: Cowrie, Laravel and ELK</h3>
+          <p class="one">An SSH honeypot and a hardened web app, with every log shipped to Elasticsearch and Kibana.</p>
+        </summary>
+        <div class="body">
+          <ul>
+            <li>Built the Laravel (PHP) application with registration and login, profile management, avatar upload, admin user management and security logging, backed by MariaDB.</li>
+            <li>Served it through Nginx with TLS and hardening, passing requests to PHP-FPM and Laravel.</li>
+            <li>Ran a Cowrie SSH honeypot on port 2222. It fakes an SSH environment, captures brute-force attempts and logs the commands and sessions of attackers.</li>
+            <li>Collected logs from Cowrie, the Laravel app, Nginx and the system with Filebeat into Elasticsearch, then explored them in Kibana.</li>
+            <li>Used Splunk and Wazuh to triage alerts and investigate source IPs, and pentested other teams' setups with OWASP methods.</li>
+            <li>Kept code, configuration and documentation in separate GitLab repositories.</li>
+          </ul>
+          <div class="shots">
+            <figure><button type="button" class="thumb" data-lb="solo" data-cap="Honeypot architecture. Nginx, PHP-FPM and Laravel in front, a Cowrie SSH honeypot on port 2222, and logs flowing through Filebeat to Elasticsearch and Kibana."><img src="assets/honeypot-arch.webp" width="850" height="529" alt="Architecture diagram of the honeypot system: Nginx, PHP-FPM, Laravel and MariaDB, a Cowrie SSH honeypot, Filebeat, Elasticsearch and Kibana" loading="lazy"></button><figcaption>Architecture. Select to enlarge.</figcaption></figure>
+            <figure><button type="button" class="thumb" data-lb="solo" data-cap="The log view in the admin panel of the honeypot web app."><img src="assets/honeypot-admin.webp" width="1500" height="625" alt="Honeypot web app admin panel showing the Security and System Logs page" loading="lazy"></button><figcaption>Admin panel log view.</figcaption></figure>
+          </div>
+          <p class="tools"><strong>Tools:</strong> Cowrie, Laravel, MariaDB, Nginx, Filebeat, Elasticsearch, Kibana, Splunk, Wazuh, GitLab</p>
+        </div>
+      </details>
+
+      <details class="card" data-id="mobile" data-label="lab" data-a="offensive">
+        <summary>
+          <div class="meta"><span class="b lab">lab</span><span>Mobile security, Howest</span></div>
+          <h3>Android mobile security assessment</h3>
+          <p class="one">Static and dynamic analysis of an Android app, from decompiling to runtime bypass.</p>
+        </summary>
+        <div class="body">
+          <ul>
+            <li>Worked with a native Android app (Kotlin, Jetpack Compose, Room, Retrofit and OkHttp) built with security flaws on purpose.</li>
+            <li>Static analysis: decompiled the app with JADX and Apktool, and practised modifying and rebuilding an APK.</li>
+            <li>Dynamic analysis: used ADB, Logcat, Frida and Burp Suite on a rooted emulator to watch runtime behaviour and API traffic.</li>
+            <li>Compared insecure and secure credential storage, and looked at API access-control problems such as IDOR.</li>
+            <li>Studied the app's root detection (test-keys, su paths, Magisk packages) and wrote a Frida script that bypassed an admin-check function.</li>
+            <li>Simulated a keylogger and credential exfiltration to see the attack from both sides.</li>
+            <li>Applied the same method in an assessment: device information, static analysis, then dynamic analysis of a provided APK on a rooted Pixel 6 Pro emulator.</li>
+          </ul>
+          <figure class="diagram"><div class="dscroll"><svg class="dg" viewBox="0 0 720 190" role="img" aria-labelledby="d1t"><title id="d1t">Mobile test setup: an analyst machine connected to a rooted Android emulator by ADB and Frida, with the app's API calls passing through Burp Suite to the backend API.</title><defs><marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z"/></marker></defs>
+<rect class="bx" x="10" y="44" width="190" height="96" rx="6"/><text class="tx" x="105" y="76" text-anchor="middle">Analyst machine</text><text class="sm" x="105" y="98" text-anchor="middle">JADX, Apktool,</text><text class="sm" x="105" y="115" text-anchor="middle">Frida, Burp Suite</text>
+<rect class="bx hl" x="270" y="44" width="190" height="96" rx="6"/><text class="tx" x="365" y="76" text-anchor="middle">Rooted Android emulator</text><text class="sm" x="365" y="98" text-anchor="middle">Pixel 6 Pro, API 36</text><text class="sm" x="365" y="115" text-anchor="middle">app under test</text>
+<rect class="bx" x="520" y="44" width="190" height="96" rx="6"/><text class="tx" x="615" y="76" text-anchor="middle">Backend API</text><text class="sm" x="615" y="98" text-anchor="middle">access control,</text><text class="sm" x="615" y="115" text-anchor="middle">IDOR checks</text>
+<line class="ln" x1="202" y1="92" x2="268" y2="92" marker-start="url(#a1)" marker-end="url(#a1)"/><text class="sm" x="235" y="80" text-anchor="middle">ADB, Frida</text>
+<line class="ln" x1="462" y1="92" x2="518" y2="92" marker-end="url(#a1)"/><text class="sm" x="490" y="80" text-anchor="middle">via Burp</text></svg></div><figcaption>Simplified diagram from my lab setup.</figcaption></figure>
+          <p class="tools"><strong>Tools:</strong> Frida, JADX, Apktool, ADB, Logcat, Burp Suite, Android Studio</p>
+        </div>
+      </details>
+
+      <details class="card" data-id="netmon" data-label="lab" data-a="defensive">
+        <summary>
+          <div class="meta"><span class="b lab">lab</span><span>Network labs, Howest</span></div>
+          <h3>Network monitoring and troubleshooting</h3>
+          <p class="one">Scanning, packet capture and intrusion detection on a lab network.</p>
+        </summary>
+        <div class="body">
+          <ul>
+            <li>Ran Nmap SYN scans across a lab subnet and read the open services on each host.</li>
+            <li>Read tcpdump captures to troubleshoot DNS between a workstation and the lab firewall.</li>
+            <li>Captured and read TLS 1.3 and HTTP/2 traffic in Wireshark during a web security lab.</li>
+            <li>Used arpwatch on a server to log new devices as they joined the network.</li>
+            <li>Ran Suricata intrusion detection on OPNsense, with a Wazuh agent installed on the firewall.</li>
+          </ul>
+          <p class="more"><a href="#proof">See the screenshots</a></p>
+          <p class="tools"><strong>Tools:</strong> Nmap, tcpdump, Wireshark, arpwatch, Suricata, OPNsense, Wazuh</p>
+        </div>
+      </details>
+
+      <details class="card" data-id="talos" data-label="lab" data-a="infrastructure">
+        <summary>
+          <div class="meta"><span class="b lab">lab</span><span>Kubernetes, Howest</span></div>
+          <h3>Kubernetes on Talos Linux</h3>
+          <p class="one">Control-plane and worker nodes, deployed and scaled.</p>
+        </summary>
+        <div class="body">
+          <ul>
+            <li>Worked with Talos Linux control-plane and worker nodes to run Kubernetes.</li>
+            <li>Managed the nodes themselves: deploying new ones and scaling the cluster.</li>
+            <li>Worked with Kubernetes in the Data Centre and Cloud Security course.</li>
+          </ul>
+          <figure class="diagram"><div class="dscroll"><svg class="dg" viewBox="0 0 720 210" role="img" aria-labelledby="d5t"><title id="d5t">Kubernetes on Talos Linux: control-plane nodes manage worker nodes, and extra worker nodes are added to scale out the cluster that runs the workloads.</title><defs><marker id="a5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z"/></marker></defs>
+<rect class="bx hl" x="20" y="65" width="210" height="80" rx="6"/><text class="tx" x="125" y="98" text-anchor="middle">Control-plane nodes</text><text class="sm" x="125" y="118" text-anchor="middle">Talos Linux</text>
+<rect class="bx" x="285" y="20" width="200" height="66" rx="6"/><text class="tx" x="385" y="50" text-anchor="middle">Worker nodes</text><text class="sm" x="385" y="69" text-anchor="middle">Talos Linux</text>
+<rect class="bx dsh" x="285" y="124" width="200" height="66" rx="6"/><text class="tx" x="385" y="154" text-anchor="middle">More worker nodes</text><text class="sm" x="385" y="173" text-anchor="middle">added to scale out</text>
+<rect class="bx" x="540" y="65" width="160" height="80" rx="6"/><text class="tx" x="620" y="98" text-anchor="middle">Workloads</text><text class="sm" x="620" y="118" text-anchor="middle">deployed on Kubernetes</text>
+<line class="ln" x1="232" y1="90" x2="283" y2="58" marker-end="url(#a5)"/>
+<line class="ln dash" x1="232" y1="120" x2="283" y2="156" marker-end="url(#a5)"/>
+<line class="ln" x1="487" y1="58" x2="538" y2="90" marker-end="url(#a5)"/>
+<line class="ln dash" x1="487" y1="156" x2="538" y2="120" marker-end="url(#a5)"/></svg></div><figcaption>Simplified. It shows the roles, not the exact cluster size.</figcaption></figure>
+          <p class="tools"><strong>Tools:</strong> Kubernetes, Talos Linux</p>
+        </div>
+      </details>
+
+      <details class="card" data-id="virt" data-label="lab" data-a="infrastructure">
+        <summary>
+          <div class="meta"><span class="b lab">lab</span><span>Virtualisation, Howest</span></div>
+          <h3>Proxmox and VMware, including nested labs</h3>
+          <p class="one">Hypervisors inside hypervisors, with many VMs on custom networks.</p>
+        </summary>
+        <div class="body">
+          <ul>
+            <li>Ran Proxmox VE, including nested Proxmox, and VMware for a range of VMs and nested VM structures.</li>
+            <li>Built lab networks with custom virtual networks, multiple network interfaces and snapshots.</li>
+            <li>Used the labs for the Windows domain, Linux hardening, firewall and security-monitoring work on this site.</li>
+          </ul>
+          <figure class="diagram"><div class="dscroll"><svg class="dg" viewBox="0 0 720 190" role="img" aria-labelledby="d6t"><title id="d6t">Nested virtualisation: a host machine runs a hypervisor, a nested Proxmox VE node runs inside a VM on it, and lab VMs run inside the nested node.</title><defs><marker id="a6" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z"/></marker></defs>
+<rect class="bx" x="10" y="44" width="190" height="96" rx="6"/><text class="tx" x="105" y="82" text-anchor="middle">Host</text><text class="sm" x="105" y="104" text-anchor="middle">VMware or Proxmox VE</text>
+<rect class="bx hl" x="270" y="44" width="190" height="96" rx="6"/><text class="tx" x="365" y="82" text-anchor="middle">Nested Proxmox VE</text><text class="sm" x="365" y="104" text-anchor="middle">running inside a VM</text>
+<rect class="bx" x="520" y="44" width="190" height="96" rx="6"/><text class="tx" x="615" y="82" text-anchor="middle">Lab VMs</text><text class="sm" x="615" y="104" text-anchor="middle">inside the nested node</text>
+<line class="ln" x1="202" y1="92" x2="268" y2="92" marker-end="url(#a6)"/><text class="sm" x="235" y="80" text-anchor="middle">hosts</text>
+<line class="ln" x1="462" y1="92" x2="518" y2="92" marker-end="url(#a6)"/><text class="sm" x="490" y="80" text-anchor="middle">runs</text></svg></div><figcaption>Simplified. It shows the idea of nesting, not every lab I built.</figcaption></figure>
+          <p class="more"><a href="#proof">See the Proxmox screenshot</a></p>
+          <p class="tools"><strong>Tools:</strong> Proxmox VE, VMware Workstation, ESXi, Docker</p>
+        </div>
+      </details>
+
+      <details class="card" data-id="ansible" data-label="built" data-a="automation">
+        <summary>
+          <div class="meta"><span class="b built">built</span><span>Individual project</span></div>
+          <h3>Server automation with Ansible and SSH</h3>
+          <p class="one">One control node managing Debian and Arch Linux servers.</p>
+        </summary>
+        <div class="body">
+          <ul>
+            <li>Built an Ansible control node on Debian that manages a Debian and an Arch Linux machine over SSH.</li>
+            <li>Wrote the inventory in YAML, ran ad-hoc commands and confirmed connectivity with Ansible ping.</li>
+            <li>Automated package management and used privilege escalation with <code>become</code>.</li>
+            <li>Fixed SSH host verification and Python interpreter problems along the way.</li>
+          </ul>
+          <figure class="diagram"><div class="dscroll"><svg class="dg" viewBox="0 0 720 200" role="img" aria-labelledby="d4t"><title id="d4t">Ansible setup: one Debian control node managing a Debian node and an Arch Linux node over SSH.</title><defs><marker id="a4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z"/></marker></defs>
+<rect class="bx hl" x="20" y="56" width="220" height="92" rx="6"/><text class="tx" x="130" y="88" text-anchor="middle">Control node</text><text class="sm" x="130" y="108" text-anchor="middle">Debian</text><text class="sm" x="130" y="126" text-anchor="middle">inventory and playbooks</text>
+<rect class="bx" x="470" y="20" width="230" height="72" rx="6"/><text class="tx" x="585" y="50" text-anchor="middle">Managed node</text><text class="sm" x="585" y="70" text-anchor="middle">Debian</text>
+<rect class="bx" x="470" y="110" width="230" height="72" rx="6"/><text class="tx" x="585" y="140" text-anchor="middle">Managed node</text><text class="sm" x="585" y="160" text-anchor="middle">Arch Linux</text>
+<line class="ln" x1="242" y1="90" x2="468" y2="58" marker-end="url(#a4)"/><line class="ln" x1="242" y1="114" x2="468" y2="144" marker-end="url(#a4)"/>
+<text class="sm" x="355" y="86" text-anchor="middle">SSH, ping, package tasks</text></svg></div><figcaption>Simplified diagram from my lab notes.</figcaption></figure>
+          <p class="tools"><strong>Tools:</strong> Ansible, YAML, SSH, Python, Linux</p>
+        </div>
+      </details>
+
+      <details class="card" data-id="toolkit" data-label="built" data-a="automation">
+        <summary>
+          <div class="meta"><span class="b built">built</span><span>Scripting and Code Analysis coursework</span></div>
+          <h3>Python Security Toolkit</h3>
+          <p class="one">Security utilities packaged as an installable command-line tool.</p>
+        </summary>
+        <div class="body">
+          <ul>
+            <li>The installable package ships a URL scanner, a port scanner and a password analyzer behind a terminal menu.</li>
+            <li>Packaged properly: <code>setup.py</code>, requirements, tests, a console entry point (<code>security-toolkit</code>) and an MIT licence.</li>
+            <li>The wider coursework added a VirusTotal URL checker, Paramiko SSH automation, a web scraper, a MAC spoofer, a service comparator and a controlled load-testing tool, eight tools in total.</li>
+            <li>Managed with Git and GitLab CI/CD, and run in Docker.</li>
+          </ul>
+          <p class="tools"><strong>Tools:</strong> Python, Paramiko, Git, GitLab CI/CD, Docker</p>
+        </div>
+      </details>
+
+      <details class="card" data-id="iiot" data-label="lab" data-a="defensive">
+        <summary>
+          <div class="meta"><span class="b lab">lab</span><span>IoT and industrial security</span></div>
+          <h3>Industrial and IoT traffic analysis</h3>
+          <p class="one">Normal and attack traffic from industrial sensors, examined with Python and Wireshark.</p>
+        </summary>
+        <div class="body">
+          <ul>
+            <li>Worked with the Edge-IIoTset dataset: normal and attack traffic from sensors such as temperature and humidity, water level, flame, pH value and heart rate, plus Modbus.</li>
+            <li>Explored the CSV data with Python and Pandas, and inspected the PCAP captures packet by packet in Wireshark.</li>
+            <li>Investigated source and destination information to see who talked to whom.</li>
+          </ul>
+          <p class="tools"><strong>Tools:</strong> Python, Pandas, Jupyter, Wireshark</p>
+        </div>
+      </details>
+
+      <details class="card" data-id="ollama" data-label="built" data-a="software">
+        <summary>
+          <div class="meta"><span class="b built">built</span><span>Personal</span></div>
+          <h3>Applications on local LLMs with Ollama</h3>
+          <p class="one">Language models running on my own hardware.</p>
+        </summary>
+        <div class="body">
+          <ul>
+            <li>Hosted applications on local large language models using Ollama.</li>
+            <li>Running models locally keeps the data on my own machine instead of sending it to an outside service.</li>
+            <li>Studied how LLMs work, including their limits and security risks.</li>
+            <li>Hands-on with Claude and Claude Code, ChatGPT, DeepSeek, Kimi, Perplexity and other assistants, so I know how they differ.</li>
+          </ul>
+          <p class="tools"><strong>Tools:</strong> Ollama</p>
+        </div>
+      </details>
+
+      <details class="card" data-id="tesla" data-label="built" data-a="software">
+        <summary>
+          <div class="meta"><span class="b built">built</span><span>Fontys University, Netherlands</span></div>
+          <h3>Tesla Autonomous Parking Challenge: 1st prize</h3>
+          <p class="one">A working prototype for a real Tesla problem, built with Tesla's software engineers.</p>
+        </summary>
+        <div class="body">
+          <ul>
+            <li>Worked in a team with Tesla's software engineers on a problem Tesla was facing.</li>
+            <li>Designed a working autonomous-parking prototype, proposed the solution and won first prize against other universities.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="card" data-id="other" data-label="built" data-a="software">
+        <summary>
+          <div class="meta"><span class="b built">built</span><span class="b concept">concept</span><span>Personal and team</span></div>
+          <h3>More software projects</h3>
+          <p class="one">A Python trading system and a multi-agent job search idea.</p>
+        </summary>
+        <div class="body">
+          <ul>
+            <li><span class="b built">built</span> Project Titan: a Python system for BTCUSDT perpetual futures, run in demo mode against the Bitget demo environment. It has an event bus, SQLite storage, strategy modules, a risk engine and a FastAPI dashboard with WebSockets.</li>
+            <li><span class="b concept">concept</span> Multi-agent job search assistant: a team proposal for an AI system that reads a CV, finds roles, judges their relevance and prepares applications. A proposal, not a finished product.</li>
+          </ul>
+          <p class="tools"><strong>Tools:</strong> Python, SQLite, FastAPI, WebSockets</p>
+        </div>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<section id="proof" aria-labelledby="h-proof">
+  <div class="wrap">
+    <h2 id="h-proof">proof</h2>
+    <p class="intro">Screenshots from my labs. Select one to enlarge it, and use the arrow keys to move through them.</p>
+
+    <div class="fbar" role="group" aria-label="Filter screenshots by area" id="gf">
+      <button type="button" data-f="all" aria-pressed="true">All</button>
+      <button type="button" data-f="defence" aria-pressed="false">Defence</button>
+      <button type="button" data-f="network" aria-pressed="false">Network</button>
+      <button type="button" data-f="servers" aria-pressed="false">Servers and virtualisation</button>
+    </div>
+
+    <div class="gal" id="gal">
+      <figure class="shot" data-a="defence" data-id="honeypot-arch">
+        <button type="button" class="thumb" data-lb="proof" data-cap="Honeypot architecture. Nginx, PHP-FPM and Laravel in front, a Cowrie SSH honeypot on port 2222, and logs flowing through Filebeat to Elasticsearch and Kibana."><img src="assets/honeypot-arch.webp" width="850" height="529" alt="Architecture diagram of the honeypot system with Nginx, PHP-FPM, Laravel, MariaDB, Cowrie, Filebeat, Elasticsearch and Kibana" loading="lazy"></button>
+        <figcaption><span class="b built">built</span><h3>Honeypot architecture</h3><p>Web app in front, a Cowrie SSH honeypot on port 2222, and logs flowing to Elasticsearch and Kibana.</p></figcaption>
+      </figure>
+      <figure class="shot contain" data-a="defence" data-id="honeypot-admin">
+        <button type="button" class="thumb" data-lb="proof" data-cap="The log view in the admin panel of the honeypot web app."><img src="assets/honeypot-admin.webp" width="1500" height="625" alt="Honeypot web app admin panel on the Security and System Logs page" loading="lazy"></button>
+        <figcaption><span class="b built">built</span><h3>Honeypot admin panel</h3><p>The log view in the admin area of the Laravel application.</p></figcaption>
+      </figure>
+      <figure class="shot" data-a="defence" data-id="opnsense-ids">
+        <button type="button" class="thumb" data-lb="proof" data-cap="Suricata intrusion detection on OPNsense, with a Wazuh agent installed on the firewall."><img src="assets/opnsense-ids.webp" width="1185" height="795" alt="OPNsense intrusion detection log page showing Suricata, with a Wazuh Agent in the services menu" loading="lazy"></button>
+        <figcaption><span class="b lab">lab</span><h3>Suricata on OPNsense</h3><p>Intrusion detection on the lab firewall, with a Wazuh agent installed.</p></figcaption>
+      </figure>
+      <figure class="shot contain" data-a="defence" data-id="arpwatch">
+        <button type="button" class="thumb" data-lb="proof" data-cap="arpwatch on a lab server logging new devices as they join the network."><img src="assets/arpwatch.webp" width="1367" height="276" alt="Terminal output from arpwatch on a server listing new stations on the network" loading="lazy"></button>
+        <figcaption><span class="b lab">lab</span><h3>arpwatch on a server</h3><p>New devices are logged as they appear on the network.</p></figcaption>
+      </figure>
+      <figure class="shot" data-a="network" data-id="nmap-scan">
+        <button type="button" class="thumb" data-lb="proof" data-cap="An Nmap SYN scan of a lab subnet, showing the open services on three hosts."><img src="assets/nmap-scan.webp" width="890" height="630" alt="Terminal showing an Nmap SYN scan of a lab subnet with open ports on three hosts" loading="lazy"></button>
+        <figcaption><span class="b lab">lab</span><h3>Nmap SYN scan</h3><p>Open services on three hosts of a lab subnet.</p></figcaption>
+      </figure>
+      <figure class="shot contain" data-a="network" data-id="dns-tcpdump">
+        <button type="button" class="thumb" data-lb="proof" data-cap="Reading a tcpdump capture to follow DNS lookups and replies between a workstation and the lab firewall."><img src="assets/dns-tcpdump.webp" width="1700" height="460" alt="Terminal output of tcpdump reading a capture of DNS queries and answers" loading="lazy"></button>
+        <figcaption><span class="b lab">lab</span><h3>DNS troubleshooting</h3><p>Following lookups and replies in a tcpdump capture.</p></figcaption>
+      </figure>
+      <figure class="shot" data-a="network" data-id="wireshark-capture">
+        <button type="button" class="thumb" data-lb="proof" data-cap="A Wireshark capture of TLS 1.3 and HTTP/2 traffic from a web security lab."><img src="assets/wireshark-capture.webp" width="1500" height="801" alt="Wireshark capture window showing ARP, TCP, TLS 1.3 and HTTP/2 packets" loading="lazy"></button>
+        <figcaption><span class="b lab">lab</span><h3>Wireshark capture</h3><p>TLS 1.3 and HTTP/2 traffic from a web security lab.</p></figcaption>
+      </figure>
+      <figure class="shot" data-a="servers" data-id="proxmox-node">
+        <button type="button" class="thumb" data-lb="proof" data-cap="The Proxmox VE web interface on my lab node, on the repositories page."><img src="assets/proxmox-node.webp" width="1500" height="696" alt="Proxmox Virtual Environment web interface showing the APT repositories page" loading="lazy"></button>
+        <figcaption><span class="b lab">lab</span><h3>Proxmox VE node</h3><p>Administering a Proxmox node in my lab.</p></figcaption>
+      </figure>
+      <figure class="shot" data-a="servers" data-id="debian-disks">
+        <button type="button" class="thumb" data-lb="proof" data-cap="Debian disk layout: a separate /home on a second disk, mounted by UUID in /etc/fstab."><img src="assets/debian-disks.webp" width="795" height="554" alt="Debian terminal showing lsblk, mount and the fstab file with a separate home partition" loading="lazy"></button>
+        <figcaption><span class="b lab">lab</span><h3>Debian disk layout</h3><p>A separate /home on a second disk, mounted by UUID in fstab.</p></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="labs" aria-labelledby="h-labs">
+  <div class="wrap">
+    <h2 id="h-labs">labs</h2>
+    <p class="intro">The hands-on security labs behind the projects. Pick an area. Labels show what I did and what I studied.</p>
+
+    <div class="tabs" role="tablist" aria-label="Security labs">
+      <button role="tab" id="t-web" aria-controls="p-web" aria-selected="true">web pentesting</button>
+      <button role="tab" id="t-for" aria-controls="p-for" aria-selected="false" tabindex="-1">digital forensics</button>
+      <button role="tab" id="t-win" aria-controls="p-win" aria-selected="false" tabindex="-1">windows server</button>
+      <button role="tab" id="t-lin" aria-controls="p-lin" aria-selected="false" tabindex="-1">linux server</button>
+      <button role="tab" id="t-net" aria-controls="p-net" aria-selected="false" tabindex="-1">firewalls and network</button>
+      <button role="tab" id="t-soc" aria-controls="p-soc" aria-selected="false" tabindex="-1">soc and siem</button>
+      <button role="tab" id="t-vrt" aria-controls="p-vrt" aria-selected="false" tabindex="-1">virtualisation and kubernetes</button>
+      <button role="tab" id="t-cld" aria-controls="p-cld" aria-selected="false" tabindex="-1">cloud</button>
+      <button role="tab" id="t-ctf" aria-controls="p-ctf" aria-selected="false" tabindex="-1">ethical hacking</button>
+    </div>
+
+    <div class="panel" role="tabpanel" id="p-web" aria-labelledby="t-web">
+      <h3>Web application penetration testing</h3>
+      <p class="sum">Attacking deliberately vulnerable web apps in Docker, with Burp Suite as the main tool.</p>
+      <ul class="items">
+        <li><span class="b lab">lab</span><span>Tested OWASP Juice Shop, Google Gruyere, PortSwigger labs and other OWASP labs.</span></li>
+        <li><span class="b lab">lab</span><span>Stored XSS: planted persistent payloads through comments and profiles and confirmed they ran from the victim's side.</span></li>
+        <li><span class="b lab">lab</span><span>Practised broken access control, authentication weaknesses, SQL injection, CSRF, CORS and filter bypass.</span></li>
+        <li><span class="b lab">lab</span><span>API security and access-control testing.</span></li>
+        <li><span class="b studied">studied</span><span>Web fingerprinting and remote code execution concepts.</span></li>
+      </ul>
+      <p class="tools"><strong>Tools:</strong> Burp Suite, OWASP ZAP, Docker</p>
+    </div>
+
+    <div class="panel" role="tabpanel" id="p-for" aria-labelledby="t-for" hidden>
+      <h3>Digital forensics</h3>
+      <p class="sum">Academic and lab work across Windows, Linux and Android. This is coursework, not professional casework.</p>
+      <ul class="items">
+        <li><span class="b lab">lab</span><span>Windows event logs: investigated attacker login activity in a Security.evtx file and found the successful logon through Event ID 4624.</span></li>
+        <li><span class="b lab">lab</span><span>Forensic tooling covered in labs: Autopsy, Sleuth Kit, Plaso (log2timeline), Timesketch, KAPE, Velociraptor and Event Log Explorer.</span></li>
+        <li><span class="b lab">lab</span><span>Timeline analysis, Windows Registry artifacts, disk images and file carving.</span></li>
+        <li><span class="b studied">studied</span><span>File systems: FAT, NTFS and ext, including inodes, superblocks, journaling, slack space, unallocated space, MBR and GPT.</span></li>
+        <li><span class="b studied">studied</span><span>Linux device analysis: block and character devices, major and minor numbers, live forensic analysis.</span></li>
+        <li><span class="b studied">studied</span><span>Android forensics: recovery mode, fastboot, TWRP, physical acquisition, NANDroid imaging, partitions and forensic soundness.</span></li>
+      </ul>
+      <p class="tools"><strong>Tools:</strong> Autopsy, Sleuth Kit, Plaso, Timesketch, KAPE, Velociraptor</p>
+    </div>
+
+    <div class="panel" role="tabpanel" id="p-win" aria-labelledby="t-win" hidden>
+      <h3>Windows Server and Active Directory security</h3>
+      <p class="sum">A lab domain with two domain controllers and a Windows 11 client.</p>
+      <ul class="items">
+        <li><span class="b lab">lab</span><span>Built the domain: two domain controllers (DC1 and DC2), DNS and a Windows 11 client joined to the domain.</span></li>
+        <li><span class="b lab">lab</span><span>Group Policy, including local versus domain policy, password and account lockout policies, user-rights assignment and auditing.</span></li>
+        <li><span class="b lab">lab</span><span>NTFS permissions with ACEs and SACLs, least privilege and LAPS for local administrator passwords.</span></li>
+        <li><span class="b lab">lab</span><span>Managed users, groups and organizational units, and administered the domain with RSAT and PowerShell.</span></li>
+        <li><span class="b studied">studied</span><span>Kerberos, LDAP, AD replication, SYSVOL, NetLogon and NTDS.dit, and privileged groups such as Domain Admins and Backup Operators.</span></li>
+      </ul>
+      <figure class="diagram"><div class="dscroll"><svg class="dg" viewBox="0 0 720 230" role="img" aria-labelledby="d3t"><title id="d3t">Active Directory lab: two domain controllers replicate with each other, and a Windows 11 client is joined to the domain and receives Group Policy.</title><defs><marker id="a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z"/></marker></defs>
+<rect class="bx hl" x="60" y="22" width="210" height="72" rx="6"/><text class="tx" x="165" y="54" text-anchor="middle">DC1</text><text class="sm" x="165" y="74" text-anchor="middle">domain controller</text>
+<rect class="bx hl" x="450" y="22" width="210" height="72" rx="6"/><text class="tx" x="555" y="54" text-anchor="middle">DC2</text><text class="sm" x="555" y="74" text-anchor="middle">domain controller</text>
+<line class="ln" x1="272" y1="58" x2="448" y2="58" marker-start="url(#a3)" marker-end="url(#a3)"/><text class="sm" x="360" y="48" text-anchor="middle">replication</text>
+<rect class="bx" x="255" y="146" width="210" height="72" rx="6"/><text class="tx" x="360" y="176" text-anchor="middle">Windows 11 client</text><text class="sm" x="360" y="196" text-anchor="middle">domain-joined</text>
+<line class="ln" x1="165" y1="96" x2="300" y2="144" marker-end="url(#a3)"/><line class="ln" x1="555" y1="96" x2="420" y2="144" marker-end="url(#a3)"/>
+<text class="sm" x="360" y="124" text-anchor="middle">join, Group Policy</text></svg></div><figcaption>Simplified diagram from my lab notes.</figcaption></figure>
+      <p class="tools"><strong>Tools:</strong> Active Directory, Group Policy, LAPS, DNS, PowerShell, RSAT</p>
+    </div>
+
+    <div class="panel" role="tabpanel" id="p-lin" aria-labelledby="t-lin" hidden>
+      <h3>Linux server security and hardening</h3>
+      <p class="sum">A Debian 12 lab in VMware, set up for security work.</p>
+      <ul class="items">
+        <li><span class="b lab">lab</span><span>Built a Debian 12 VM with several network interfaces, static IP addresses, SSH, SCP and snapshots.</span></li>
+        <li><span class="b lab">lab</span><span>Disk management: root and swap on one disk and a separate /home on a second disk, mounted by UUID in /etc/fstab and checked with lsblk and mount.</span></li>
+        <li><span class="b lab">lab</span><span>Configured SUID executables and studied the risk they carry.</span></li>
+        <li><span class="b lab">lab</span><span>Set up WebSSH2 (Node.js and npm) so the lab can be reached over SSH from a browser.</span></li>
+        <li><span class="b lab">lab</span><span>Users and permissions, systemd, firewalling with nftables, logging and auditing.</span></li>
+        <li><span class="b studied">studied</span><span>How Linux logs in to a Windows domain: LDAP, NSS, PAM and SSSD against Active Directory.</span></li>
+        <li><span class="b studied">studied</span><span>SELinux, AppArmor and LUKS disk encryption.</span></li>
+      </ul>
+      <div class="shots">
+        <figure><button type="button" class="thumb" data-lb="solo" data-cap="Debian disk layout: a separate /home on a second disk, mounted by UUID in /etc/fstab."><img src="assets/debian-disks.webp" width="795" height="554" alt="Debian terminal showing lsblk, mount and the fstab file with a separate home partition" loading="lazy"></button><figcaption>Disk layout on my Debian lab VM.</figcaption></figure>
+      </div>
+      <p class="tools"><strong>Tools:</strong> Debian, VMware, SSH, nftables, systemd</p>
+    </div>
+
+    <div class="panel" role="tabpanel" id="p-net" aria-labelledby="t-net" hidden>
+      <h3>Firewalls and network security</h3>
+      <p class="sum">Enterprise and open-source firewalls, with CyberOps-style network defence.</p>
+      <ul class="items">
+        <li><span class="b lab">lab</span><span>Configured and worked with Palo Alto Networks and Cisco security and firewall technologies.</span></li>
+        <li><span class="b lab">lab</span><span>Wrote firewall and security policies, NAT rules and traffic filtering, and controlled inbound and outbound traffic.</span></li>
+        <li><span class="b lab">lab</span><span>Network segmentation with VLANs, and troubleshooting of connectivity and policy problems.</span></li>
+        <li><span class="b lab">lab</span><span>Set up pfSense and OPNsense firewalls with OpenVPN and WireGuard, on routers, switches, DHCP and VMware virtual networks.</span></li>
+        <li><span class="b lab">lab</span><span>Ran Suricata intrusion detection on OPNsense, with a Wazuh agent installed.</span></li>
+        <li><span class="b lab">lab</span><span>Scanned with Nmap, troubleshot DNS with tcpdump, analysed packets in Wireshark and watched the network with arpwatch.</span></li>
+        <li><span class="b studied">studied</span><span>Firewall logging, monitoring and security-event analysis.</span></li>
+      </ul>
+      <p class="more"><a href="#proof">See the screenshots</a></p>
+      <p class="tools"><strong>Tools:</strong> Palo Alto Networks, Cisco, pfSense, OPNsense, Suricata, OpenVPN, WireGuard, Nmap, tcpdump, Wireshark</p>
+    </div>
+
+    <div class="panel" role="tabpanel" id="p-soc" aria-labelledby="t-soc" hidden>
+      <h3>Security operations and SIEM</h3>
+      <p class="sum">Collecting logs, spotting suspicious activity and deciding what to do next. Backed by the Cisco CyberOps Associate.</p>
+      <ul class="items">
+        <li><span class="b built">built</span><span>A logging pipeline from a Cowrie honeypot, a web app and Nginx through Filebeat into Elasticsearch and Kibana.</span></li>
+        <li><span class="b lab">lab</span><span>Alert triage and source-IP investigation in Splunk and Wazuh.</span></li>
+        <li><span class="b lab">lab</span><span>Intrusion detection with Suricata on OPNsense, and new-device monitoring with arpwatch.</span></li>
+        <li><span class="b lab">lab</span><span>Analysed Windows Event Viewer, Sysmon, Linux, firewall and Docker logs.</span></li>
+        <li><span class="b studied">studied</span><span>Threat detection, SOAR concepts, and incident-response workflows.</span></li>
+      </ul>
+      <p class="tools"><strong>Tools:</strong> Elasticsearch, Kibana, Wazuh, Splunk, Suricata, Sysmon, MITRE ATT&amp;CK</p>
+    </div>
+
+    <div class="panel" role="tabpanel" id="p-vrt" aria-labelledby="t-vrt" hidden>
+      <h3>Virtualisation and Kubernetes</h3>
+      <p class="sum">The platforms underneath the other labs.</p>
+      <ul class="items">
+        <li><span class="b lab">lab</span><span>Proxmox VE, including nested Proxmox.</span></li>
+        <li><span class="b lab">lab</span><span>VMware Workstation and ESXi for a range of VMs and nested VM structures, with custom virtual networks, multiple network interfaces and snapshots.</span></li>
+        <li><span class="b lab">lab</span><span>Kubernetes on Talos Linux: control-plane and worker nodes, deploying nodes and scaling the cluster.</span></li>
+        <li><span class="b lab">lab</span><span>Docker and Docker Compose.</span></li>
+        <li><span class="b studied">studied</span><span>Storage for datacentres: iSCSI, RAID and Ceph.</span></li>
+      </ul>
+      <p class="more"><a href="#proof">See the Proxmox screenshot</a></p>
+      <p class="tools"><strong>Tools:</strong> Proxmox VE, VMware, Kubernetes, Talos Linux, Docker</p>
+    </div>
+
+    <div class="panel" role="tabpanel" id="p-cld" aria-labelledby="t-cld" hidden>
+      <h3>Cloud security</h3>
+      <p class="sum">Cloud networking and identity across three providers.</p>
+      <ul class="items">
+        <li><span class="b lab">lab</span><span>Worked in Azure, AWS and Google Cloud: cloud VMs, networking, IAM and security groups.</span></li>
+        <li><span class="b lab">lab</span><span>Azure Firewall: a workload VM in its own subnet, with a route table sending its traffic through the firewall and rules set in a firewall policy.</span></li>
+        <li><span class="b lab">lab</span><span>Microsoft Entra ID and Microsoft 365.</span></li>
+      </ul>
+      <figure class="diagram"><div class="dscroll"><svg class="dg" viewBox="0 0 720 290" role="img" aria-labelledby="d7t"><title id="d7t">Azure Firewall lab: a workload VM in a workload subnet has a route table that sends its traffic through Azure Firewall in the firewall subnet, which reaches the internet through a public IP. All of it sits in one virtual network.</title><defs><marker id="a7" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z"/></marker></defs>
+<rect class="zone" x="10" y="14" width="580" height="262" rx="8"/><text class="sm" x="24" y="34">Virtual network 10.0.0.0/16</text>
+<rect class="bx" x="28" y="48" width="260" height="208" rx="6"/><text class="sm" x="42" y="68">Workload subnet 10.0.2.0/24</text>
+<rect class="bx hl" x="48" y="84" width="220" height="64" rx="6"/><text class="tx" x="158" y="112" text-anchor="middle">Srv-Work VM</text><text class="sm" x="158" y="131" text-anchor="middle">10.0.2.4</text>
+<rect class="bx" x="48" y="168" width="220" height="64" rx="6"/><text class="tx" x="158" y="196" text-anchor="middle">Route table</text><text class="sm" x="158" y="215" text-anchor="middle">sends traffic to the firewall</text>
+<rect class="bx" x="316" y="48" width="260" height="208" rx="6"/><text class="sm" x="330" y="68">AzureFirewallSubnet 10.0.0.0/26</text>
+<rect class="bx hl" x="336" y="84" width="220" height="64" rx="6"/><text class="tx" x="446" y="112" text-anchor="middle">Azure Firewall</text><text class="sm" x="446" y="131" text-anchor="middle">Test-FW01, rules in a policy</text>
+<rect class="bx" x="336" y="168" width="220" height="64" rx="6"/><text class="tx" x="446" y="196" text-anchor="middle">Public IP</text><text class="sm" x="446" y="215" text-anchor="middle">fw-pip</text>
+<rect class="bx" x="624" y="116" width="86" height="64" rx="6"/><text class="tx" x="667" y="153" text-anchor="middle">Internet</text>
+<line class="ln" x1="270" y1="116" x2="334" y2="116" marker-end="url(#a7)"/>
+<line class="ln" x1="558" y1="150" x2="622" y2="150" marker-end="url(#a7)"/></svg></div><figcaption>Redrawn from my lab layout. Simplified.</figcaption></figure>
+      <p class="tools"><strong>Tools:</strong> Azure, AWS, GCP, Entra ID, Microsoft 365</p>
+    </div>
+
+    <div class="panel" role="tabpanel" id="p-ctf" aria-labelledby="t-ctf" hidden>
+      <h3>Ethical hacking and CTF</h3>
+      <p class="sum">Practice that sits behind the CEH.</p>
+      <ul class="items">
+        <li><span class="b lab">lab</span><span>CTF challenges in coursework and practice on OWASP Juice Shop, Google Gruyere and PortSwigger labs.</span></li>
+        <li><span class="b lab">lab</span><span>Password cracking with John the Ripper: zip2john, pdf2john, the rockyou wordlist, incremental and rule-based attacks, and restoring interrupted sessions.</span></li>
+        <li><span class="b lab">lab</span><span>Linux for ethical hackers: VM networking, SSH, SCP and SUID privilege concepts.</span></li>
+        <li><span class="b studied">studied</span><span>The full attacker workflow from the CEH: recon, scanning, enumeration, exploitation and covering tracks.</span></li>
+      </ul>
+      <p class="tools"><strong>Tools:</strong> John the Ripper, Burp Suite, Kali Linux, Metasploit, Nmap</p>
+    </div>
+  </div>
+</section>
+
+<section id="certs" aria-labelledby="h-certs">
+  <div class="wrap">
+    <h2 id="h-certs">certs</h2>
+    <p class="intro">Select a certificate to see it full size. I hid the certificate number, ID and QR code on this public page. You can check the CEH at EC-Council, and I will send the numbers on request.</p>
+
+    <div class="certs">
+      <figure class="cert">
+        <button type="button" class="thumb" data-lb="certs" data-cap="Certified Ethical Hacker (CEH), EC-Council. Issued 4 September 2026."><img src="assets/ceh.jpg" width="925" height="727" alt="EC-Council Certified Ethical Hacker certificate awarded to Muhammad Shayan Gul, issued 4 September 2026" loading="lazy"></button>
+        <figcaption>
+          <h3>Certified Ethical Hacker (CEH), EC-Council</h3>
+          <p>Issued 4 September 2026. The attacker workflow and the defences against each step, including AI-assisted security techniques.</p>
+          <a class="link" href="https://aspen.eccouncil.org/verify" rel="noopener">Verify at aspen.eccouncil.org/verify</a>
+        </figcaption>
+      </figure>
+
+      <figure class="cert">
+        <button type="button" class="thumb" data-lb="certs" data-cap="CyberOps Associate, Cisco Networking Academy, through Howest. Completed 6 October 2026."><img src="assets/cyberops.jpg" width="1000" height="667" alt="Cisco Networking Academy CyberOps Associate certificate, completed 6 October 2026" loading="lazy"></button>
+        <figcaption>
+          <h3>CyberOps Associate, Cisco Networking Academy</h3>
+          <p>Completed 6 October 2026 through Howest. Security monitoring, host-based and network intrusion analysis, and incident-response procedures.</p>
+          <p>The certificate is issued as "Shayan Gul Muhammad". That is the same person as Muhammad Shayan Gul, with the name order changed.</p>
+        </figcaption>
+      </figure>
+    </div>
+    <p class="pending-note">In progress: CompTIA Security+.</p>
+
+    <div class="edu">
+      <h3>education</h3>
+      <ul>
+        <li><strong>BSc Cybersecurity, Howest University of Applied Sciences, Bruges</strong><span class="when">2024 to 2027 (expected)</span><span>Web and mobile pentesting, network and system pentesting, blue teaming and incident response, digital forensics, reverse engineering and malware analysis, server security, data centre and cloud security, cryptography, IoT security, GDPR and risk management.</span></li>
+        <li><strong>Software Engineering (1 year), Foundation University, Pakistan</strong><span class="when">2022 to 2023</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="skills" aria-labelledby="h-skills">
+  <div class="wrap">
+    <h2 id="h-skills">skills</h2>
+    <p class="intro">Tools I have used in coursework and projects, grouped by what they are for.</p>
+    <div class="skills">
+      <div class="s"><h3>offensive security</h3><ul class="tags"><li>Burp Suite</li><li>OWASP ZAP</li><li>Nmap</li><li>Metasploit</li><li>Kali Linux</li><li>Nessus</li><li>OpenVAS</li><li>Frida</li><li>JADX</li><li>Apktool</li><li>ADB</li><li>John the Ripper</li><li>OWASP Top 10</li><li>CVSS and CWE reporting</li></ul></div>
+      <div class="s"><h3>defensive security</h3><ul class="tags"><li>Elasticsearch and Kibana</li><li>Splunk</li><li>Wazuh</li><li>Suricata</li><li>Cowrie honeypot</li><li>Sysmon</li><li>Windows Event Logs</li><li>arpwatch</li><li>incident response</li><li>MITRE ATT&amp;CK</li><li>ISO 27001</li><li>GDPR</li></ul></div>
+      <div class="s"><h3>digital forensics</h3><ul class="tags"><li>Autopsy</li><li>Sleuth Kit</li><li>Plaso</li><li>Timesketch</li><li>KAPE</li><li>Velociraptor</li><li>Registry analysis</li><li>file carving</li><li>malware analysis</li></ul></div>
+      <div class="s"><h3>firewalls and network</h3><ul class="tags"><li>Palo Alto Networks</li><li>Cisco</li><li>pfSense</li><li>OPNsense</li><li>firewall policies</li><li>NAT</li><li>VLANs</li><li>OpenVPN</li><li>WireGuard</li><li>Wireshark</li><li>tcpdump</li><li>TCP/IP</li><li>DNS</li><li>DHCP</li></ul></div>
+      <div class="s"><h3>servers and identity</h3><ul class="tags"><li>Windows Server</li><li>Active Directory</li><li>Group Policy</li><li>LAPS</li><li>Kerberos</li><li>LDAP</li><li>Linux hardening</li><li>nftables</li><li>SSH</li><li>Nginx</li><li>Apache</li><li>HAProxy</li><li>MariaDB</li></ul></div>
+      <div class="s"><h3>virtualisation and cloud</h3><ul class="tags"><li>Proxmox VE, including nested</li><li>VMware and ESXi</li><li>Kubernetes</li><li>Talos Linux</li><li>Docker</li><li>AWS</li><li>Azure and Azure Firewall</li><li>Google Cloud</li><li>Entra ID</li><li>Microsoft 365</li></ul></div>
+      <div class="s"><h3>automation and code</h3><ul class="tags"><li>Ansible</li><li>Python</li><li>Bash</li><li>PowerShell</li><li>PHP and Laravel</li><li>Kotlin</li><li>JavaScript</li><li>Git</li><li>GitLab CI/CD</li></ul></div>
+      <div class="s"><h3>ai and llms</h3><ul class="tags"><li>Ollama</li><li>Claude and Claude Code</li><li>ChatGPT</li><li>DeepSeek</li><li>Kimi</li><li>Perplexity</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" aria-labelledby="h-contact">
+  <div class="wrap contact">
+    <h2 id="h-contact">contact</h2>
+    <div id="about" class="about">
+      <p>I am a final-year BSc Cybersecurity student at Howest University of Applied Sciences. My work covers both sides of security: attacking applications and networks in pentests, and building, hardening and monitoring systems so attacks get caught.</p>
+      <p>I like building realistic labs and security software rather than only reading about them. I am available for a full-time 6-month internship (Howest agreement available) in a team that does testing, detection or automation. I speak English (fluent), Urdu (native) and some Dutch and French.</p>
+    </div>
+    <p>Email is the fastest way to reach me.</p>
+    <div class="actions">
+      <a class="btn primary" href="mailto:shayann2326@gmail.com">shayann2326@gmail.com</a>
+      <a class="btn" href="https://www.linkedin.com/in/muhammad-shayan-gul-166155332" rel="noopener">LinkedIn</a>
+      <a class="btn" href="cv.pdf" download>Download CV</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer"><div class="wrap">Muhammad Shayan Gul, Bruges, Belgium. Updated October 2026.</div></footer>
+
+<dialog id="lb" aria-label="Image viewer">
+  <img id="lb-img" alt="">
+  <p id="lb-cap"></p>
+  <div class="lb-nav">
+    <button type="button" class="btn" id="lb-prev">Previous</button>
+    <button type="button" class="btn" id="lb-next">Next</button>
+    <button type="button" class="btn primary" id="lb-close">Close</button>
+  </div>
+</dialog>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- lightbox ---------- */
+  var lb=document.getElementById('lb'), lbImg=document.getElementById('lb-img'), lbCap=document.getElementById('lb-cap');
+  var lbPrev=document.getElementById('lb-prev'), lbNext=document.getElementById('lb-next');
+  var lbList=[], lbIdx=0;
+  function showLb(){
+    var b=lbList[lbIdx], im=b.querySelector('img');
+    lbImg.src=im.currentSrc||im.src; lbImg.alt=im.alt; lbCap.textContent=b.getAttribute('data-cap')||im.alt;
+    var multi=lbList.length>1;
+    lbPrev.hidden=!multi; lbNext.hidden=!multi;
+  }
+  function openLb(b){
+    var g=b.getAttribute('data-lb');
+    lbList=(g==='solo')?[b]:[].slice.call(document.querySelectorAll('[data-lb="'+g+'"]')).filter(function(x){return !x.closest('[hidden]');});
+    lbIdx=Math.max(0,lbList.indexOf(b));
+    showLb();
+    if(lb.showModal){lb.showModal();}
+  }
+  function step(d){if(lbList.length>1){lbIdx=(lbIdx+d+lbList.length)%lbList.length;showLb();}}
+  document.querySelectorAll('[data-lb]').forEach(function(b){b.addEventListener('click',function(){openLb(b);});});
+  lbPrev.addEventListener('click',function(){step(-1);});
+  lbNext.addEventListener('click',function(){step(1);});
+  document.getElementById('lb-close').addEventListener('click',function(){lb.close();});
+  lb.addEventListener('click',function(e){if(e.target===lb){lb.close();}});
+  lb.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'){e.preventDefault();step(1);}
+    else if(e.key==='ArrowLeft'){e.preventDefault();step(-1);}
+  });
+
+  /* ---------- generic filters ---------- */
+  function filterBar(barId,itemsSel){
+    var bar=document.getElementById(barId); if(!bar){return;}
+    var btns=[].slice.call(bar.querySelectorAll('button'));
+    var items=[].slice.call(document.querySelectorAll(itemsSel));
+    btns.forEach(function(b){
+      b.addEventListener('click',function(){
+        var f=b.getAttribute('data-f');
+        btns.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false');});
+        items.forEach(function(it){it.hidden=!(f==='all'||it.getAttribute('data-a')===f);});
+      });
+    });
+  }
+  filterBar('pf','#pgrid .card');
+  filterBar('gf','#gal .shot');
+
+  /* ---------- labs tabs ---------- */
+  var tabs=[].slice.call(document.querySelectorAll('[role="tab"]'));
+  function selectTab(t,focus){
+    tabs.forEach(function(x){
+      var on=x===t;
+      x.setAttribute('aria-selected',on?'true':'false');
+      x.tabIndex=on?0:-1;
+      document.getElementById(x.getAttribute('aria-controls')).hidden=!on;
+    });
+    if(focus){t.focus();}
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){selectTab(t,false);});
+    t.addEventListener('keydown',function(e){
+      var n=null;
+      if(e.key==='ArrowRight'){n=tabs[(i+1)%tabs.length];}
+      else if(e.key==='ArrowLeft'){n=tabs[(i-1+tabs.length)%tabs.length];}
+      else if(e.key==='Home'){n=tabs[0];}
+      else if(e.key==='End'){n=tabs[tabs.length-1];}
+      if(n){e.preventDefault();selectTab(n,true);}
+    });
+  });
+  var tabMap={web:'t-web',forensics:'t-for',windows:'t-win',linux:'t-lin',firewall:'t-net',network:'t-net',soc:'t-soc',siem:'t-soc',virtualisation:'t-vrt',kubernetes:'t-vrt',proxmox:'t-vrt',vmware:'t-vrt',cloud:'t-cld',ctf:'t-ctf',hacking:'t-ctf'};
+
+  /* ---------- findings filter ---------- */
+  var sevButtons=[].slice.call(document.querySelectorAll('.sevf button'));
+  var frows=[].slice.call(document.querySelectorAll('#ft tbody tr'));
+  var countEl=document.getElementById('count');
+  sevButtons.forEach(function(b){
+    b.addEventListener('click',function(){
+      var f=b.getAttribute('data-sev'), shown=0;
+      sevButtons.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false');});
+      frows.forEach(function(r){
+        var show=(f==='all'||r.getAttribute('data-sev')===f);
+        r.hidden=!show; if(show){shown++;}
+      });
+      countEl.textContent=(f==='all'?'Showing all '+shown+' findings':'Showing '+shown+' '+f+' findings')+', highest CVSS first.';
+    });
+  });
+
+  /* ---------- open a project card ---------- */
+  var cards=[].slice.call(document.querySelectorAll('.card'));
+  function showCard(id){
+    var card=cards.filter(function(c){return c.getAttribute('data-id')===id;})[0];
+    if(!card){return false;}
+    var pfAll=document.querySelector('#pf [data-f="all"]');
+    if(card.hidden&&pfAll){pfAll.click();}
+    card.open=true;
+    card.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'});
+    return true;
+  }
+  document.querySelectorAll('[data-open]').forEach(function(b){
+    b.addEventListener('click',function(){showCard(b.getAttribute('data-open'));});
+  });
+
+  /* ---------- nav highlight ---------- */
+  if('IntersectionObserver' in window){
+    var links={};
+    document.querySelectorAll('.top nav a[href^="#"]').forEach(function(a){links[a.getAttribute('href').slice(1)]=a;});
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){
+          Object.keys(links).forEach(function(k){links[k].removeAttribute('aria-current');});
+          if(links[en.target.id]){links[en.target.id].setAttribute('aria-current','true');}
+        }
+      });
+    },{rootMargin:'-45% 0px -50% 0px'});
+    Object.keys(links).forEach(function(k){var s=document.getElementById(k);if(s){io.observe(s);}});
+  }
+
+  /* ---------- terminal ---------- */
+  var out=document.getElementById('out'), form=document.getElementById('form'), input=document.getElementById('cmd');
+  var history=[], hIdx=0, booting=true;
+
+  function line(text,cls){
+    var p=document.createElement('p');
+    if(cls){p.className=cls;}
+    p.textContent=text;
+    out.appendChild(p);
+    out.scrollTop=out.scrollHeight;
+    return p;
+  }
+  function echo(cmd){
+    var p=document.createElement('p'); p.className='cmd';
+    var b=document.createElement('b'); b.textContent='shayan@cyberlab:~$ ';
+    p.appendChild(b); p.appendChild(document.createTextNode(cmd));
+    out.appendChild(p); out.scrollTop=out.scrollHeight;
+  }
+  function lines(arr,cls){arr.forEach(function(t){line(t,cls);});}
+  function goTo(id){
+    var el=document.getElementById(id);
+    if(el){el.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});}
+  }
+  var sections=['start','pentest','projects','proof','labs','certs','skills','about','contact'];
+
+  var commands={
+    help:function(){
+      lines([
+        'whoami           who I am',
+        'cat mission.txt  what I am aiming for',
+        'findings         pentest findings summary',
+        'projects         list projects (then: open <id> or cat <id>)',
+        'proof            list lab screenshots',
+        'labs             list security labs (then: open <lab>)',
+        'certs            certifications',
+        'skills           tool groups',
+        'contact          how to reach me',
+        'open <name>      jump to a section, project or lab',
+        'clear            clear the screen',
+        'Tip: press Tab to complete a command.'
+      ]);
+    },
+    whoami:function(){
+      line('Muhammad Shayan Gul','ok');
+      lines(['Cybersecurity student, Howest (Bruges). CEH certified.','Pentesting, honeypots and monitoring, servers, firewalls, virtualisation.','Status: available for a full-time 6-month internship.']);
+    },
+    'cat mission.txt':function(){
+      line('Understand how systems fail, and build them to fail securely.','ok');
+    },
+    findings:function(){
+      var rows=[].slice.call(document.querySelectorAll('#ft tbody tr'));
+      var c={critical:0,high:0,medium:0,low:0};
+      rows.forEach(function(r){c[r.getAttribute('data-sev')]++;});
+      line(rows.length+' findings: '+c.critical+' critical, '+c.high+' high, '+c.medium+' medium, '+c.low+' low','ok');
+      rows.filter(function(r){return r.getAttribute('data-sev')==='critical';}).forEach(function(r){
+        line('[critical] '+r.getAttribute('data-score')+'  '+r.cells[0].textContent);
+      });
+      line('Try: open pentest','dim');
+    },
+    projects:function(){
+      cards.forEach(function(c){
+        line(('['+c.getAttribute('data-label')+']').padEnd(10)+c.getAttribute('data-id').padEnd(12)+c.querySelector('h3').textContent);
+      });
+      line('Try: open honeypot, or cat honeypot','dim');
+    },
+    proof:function(){
+      [].slice.call(document.querySelectorAll('#gal .shot')).forEach(function(s){
+        line(('['+s.getAttribute('data-a')+']').padEnd(11)+s.querySelector('h3').textContent);
+      });
+      line('Try: open proof','dim');
+    },
+    labs:function(){
+      lines(['web            web application pentesting','forensics      digital forensics','windows        Windows Server and Active Directory','linux          Linux server security','firewall       firewalls and network security','soc            SOC and SIEM','virtualisation Proxmox, VMware and Kubernetes','cloud          cloud security','ctf            ethical hacking and CTF']);
+      line('Try: open windows','dim');
+    },
+    certs:function(){
+      line('[done]    Certified Ethical Hacker (CEH), EC-Council, 4 Sep 2026','ok');
+      line('[done]    CyberOps Associate, Cisco Networking Academy, 6 Oct 2026','ok');
+      line('[active]  CompTIA Security+','warn');
+      line('Try: open certs','dim');
+    },
+    skills:function(){
+      lines(['offensive    Burp Suite, Frida, Nmap, Metasploit, JADX, John the Ripper','defensive    Elasticsearch, Kibana, Splunk, Wazuh, Suricata, Cowrie','forensics    Autopsy, Sleuth Kit, Plaso, KAPE, Velociraptor','network      Palo Alto, Cisco, pfSense, OPNsense, Wireshark, tcpdump','servers      Active Directory, Group Policy, LAPS, Linux hardening','virtual      Proxmox (nested), VMware, Kubernetes, Talos Linux, Docker','cloud        AWS, Azure, GCP, Entra ID','automation   Ansible, Python, Bash, PowerShell, Git']);
+    },
+    contact:function(){
+      var p=document.createElement('p');
+      p.appendChild(document.createTextNode('email     '));
+      var a=document.createElement('a'); a.href='mailto:shayann2326@gmail.com'; a.textContent='shayann2326@gmail.com'; p.appendChild(a);
+      out.appendChild(p);
+      var q=document.createElement('p');
+      q.appendChild(document.createTextNode('linkedin  '));
+      var l=document.createElement('a'); l.href='https://www.linkedin.com/in/muhammad-shayan-gul-166155332'; l.rel='noopener'; l.textContent='muhammad-shayan-gul-166155332'; q.appendChild(l);
+      out.appendChild(q);
+      out.scrollTop=out.scrollHeight;
+    },
+    clear:function(){out.textContent='';}
+  };
+
+  function openTarget(target){
+    var t=(target||'').toLowerCase();
+    if(!t){line('Usage: open <section | project id | lab>','warn');return;}
+    if(sections.indexOf(t)>-1){line('Opening '+t+'...','ok');goTo(t);return;}
+    if(showCard(t)){line('Opening project: '+t,'ok');return;}
+    if(tabMap[t]){selectTab(document.getElementById(tabMap[t]),false);line('Opening lab: '+t,'ok');goTo('labs');return;}
+    line('open: nothing called "'+t+'". Try projects or labs.','warn');
+  }
+  function catProject(id){
+    var card=cards.filter(function(c){return c.getAttribute('data-id')===id;})[0];
+    if(!card){line('cat: no project called "'+id+'". Type projects to list them.','warn');return;}
+    line(card.querySelector('h3').textContent,'ok');
+    line(card.querySelector('.one').textContent,'dim');
+    [].slice.call(card.querySelectorAll('.body > ul > li')).forEach(function(li){line('- '+li.textContent.replace(/\s+/g,' ').trim());});
+  }
+  function candidates(v){
+    var ids=cards.map(function(c){return c.getAttribute('data-id');});
+    if(v.indexOf('open ')===0){return sections.concat(ids,Object.keys(tabMap)).map(function(x){return 'open '+x;});}
+    if(v.indexOf('cat ')===0){return ['mission.txt'].concat(ids).map(function(x){return 'cat '+x;});}
+    return ['help','whoami','findings','projects','proof','labs','certs','skills','contact','clear','ls','open ','cat '];
+  }
+  function complete(v){
+    var low=v.toLowerCase();
+    var m=candidates(low).filter(function(x){return x.indexOf(low)===0;});
+    if(!m.length){return null;}
+    if(m.length===1){return m[0];}
+    var p=m[0];
+    m.forEach(function(x){while(x.indexOf(p)!==0){p=p.slice(0,-1);}});
+    return p.length>low.length?p:null;
+  }
+  function run(raw){
+    var cmd=raw.trim();
+    if(!cmd){return;}
+    echo(cmd);
+    history.push(cmd); hIdx=history.length;
+    var low=cmd.toLowerCase().replace(/\s+/g,' ');
+    if(commands[low]){commands[low]();return;}
+    if(low.indexOf('open ')===0){openTarget(low.slice(5));return;}
+    if(low.indexOf('cat ')===0){catProject(low.slice(4).trim());return;}
+    if(low==='cat'){line('cat: try "cat mission.txt" or "cat honeypot"','warn');return;}
+    if(low==='sudo hire shayan'||low==='sudo hire'){
+      line('[sudo] permission granted.','ok');
+      line('Opening contact...','ok');
+      goTo('contact');return;
+    }
+    if(low==='ls'){line('start  pentest  projects  proof  labs  certs  skills  about  contact','dim');return;}
+    if(low==='pwd'){line('/home/shayan/portfolio','dim');return;}
+    if(low.indexOf('sudo')===0){line('Nice try. This portfolio is read-only. Try: sudo hire shayan','warn');return;}
+    line('command not found: '+cmd.split(' ')[0]+'. Type help.','warn');
+  }
+
+  form.addEventListener('submit',function(e){e.preventDefault();var v=input.value;input.value='';if(booting){finishBoot();}run(v);});
+  input.addEventListener('keydown',function(e){
+    if(e.key==='Tab'){var done=complete(input.value);if(done!==null){e.preventDefault();input.value=done;}return;}
+    if(e.key==='ArrowUp'&&history.length){e.preventDefault();hIdx=Math.max(0,hIdx-1);input.value=history[hIdx]||'';}
+    else if(e.key==='ArrowDown'&&history.length){e.preventDefault();hIdx=Math.min(history.length,hIdx+1);input.value=history[hIdx]||'';}
+  });
+  document.querySelectorAll('[data-run]').forEach(function(b){
+    b.addEventListener('click',function(){if(booting){finishBoot();}run(b.getAttribute('data-run'));});
+  });
+
+  /* ---------- boot sequence ---------- */
+  var bootLines=[
+    ['[ ok ] loading profile: muhammad-shayan-gul','ok'],
+    ['[ ok ] mounting /labs  (pentest, forensics, windows, linux, network, virtualisation, kubernetes)','ok'],
+    ['[ ok ] verifying credentials: CEH, CyberOps Associate','ok'],
+    ['[ ok ] status: available for a 6-month internship','ok']
+  ];
+  var timers=[];
+  function finishBoot(){
+    if(!booting){return;}
+    booting=false;
+    timers.forEach(clearTimeout);
+    out.textContent='';
+    bootLines.forEach(function(b){line(b[0],b[1]);});
+    line('Type help, or tap a command below.','dim');
+  }
+  document.getElementById('skip').addEventListener('click',finishBoot);
+
+  if(reduce){
+    bootLines.forEach(function(b){line(b[0],b[1]);});
+    line('Type help, or tap a command below.','dim');
+    booting=false;
+  }else{
+    bootLines.forEach(function(b,i){
+      timers.push(setTimeout(function(){line(b[0],b[1]);},350+i*420));
+    });
+    timers.push(setTimeout(function(){
+      if(!booting){return;}
+      line('Type help, or tap a command below.','dim');
+      booting=false;
+    },350+bootLines.length*420+300));
+  }
+})();
+</script>
+</body>
+</html>
