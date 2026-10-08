@@ -7,7 +7,7 @@ I test systems for weaknesses, then build the monitoring that catches the next a
 **Portfolio: [git-shayan.github.io](https://git-shayan.github.io)**
 Projects, pentest findings, lab screenshots and certificates.
 
-Available for a full-time **6-month internship** (Howest agreement available).
+Available for a full-time **internship** (Howest agreement available).
 
 ---
 
