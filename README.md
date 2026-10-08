@@ -15,7 +15,7 @@ Available for a full-time **internship** (Howest agreement available).
 
 | What | Detail |
 |---|---|
-| Certified | CEH (EC-Council), Cisco CyberOps Associate. CompTIA Security+ in progress. |
+| Certified | CEH (EC-Council), Cisco CyberOps Associate. CompTIA Security+ |
 | Pentest | Internal IT/OT penetration test: 24 findings, 6 critical, written up with CVSS, CWE and fixes. |
 | Defence | Cowrie SSH honeypot and a hardened Laravel app, with logs in Elasticsearch and Kibana. Splunk, Wazuh and Suricata for detection. |
 | Mobile | Android assessment with JADX, Apktool, ADB, Frida and Burp Suite on a rooted emulator. |
