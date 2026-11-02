@@ -4,11 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Muhammad Shayan Gul | Cybersecurity student, CEH certified</title>
-<meta name="description" content="Cybersecurity student at Howest and Certified Ethical Hacker. Pentest with 24 findings, SSH honeypot with ELK, Windows and Linux servers, firewalls, Proxmox, VMware and Kubernetes. Available for a 6-month internship.">
+<meta name="description" content="Cybersecurity student at Howest and Certified Ethical Hacker. A 14-VM blue-team lab with interactive topology, a pentest with 24 findings, an SSH honeypot with ELK, Windows and Linux servers, firewalls, Proxmox, VMware and Kubernetes. Available for a 6-month internship.">
 <meta property="og:title" content="Muhammad Shayan Gul | Cybersecurity student, CEH certified">
 <meta property="og:description" content="Pentesting, honeypots and monitoring, servers, firewalls and virtualisation. Available for an internship.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#060a12">
+<meta name="author" content="Muhammad Shayan Gul">
+<link rel="canonical" href="https://git-shayan.github.io/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Muhammad Shayan Gul","jobTitle":"Cybersecurity student","url":"https://git-shayan.github.io/","affiliation":{"@type":"CollegeOrUniversity","name":"Howest University of Applied Sciences"},"sameAs":["https://www.linkedin.com/in/muhammad-shayan-gul-166155332","https://github.com/git-shayan"]}</script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23060a12'/%3E%3Cpath d='M14 22l14 10-14 10' fill='none' stroke='%235ef2d0' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M34 44h18' stroke='%235ef2d0' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -264,6 +267,116 @@ h3.sub{font-family:var(--mono);font-size:1.05rem;color:var(--mint);margin:40px 0
 .contact>p{max-width:58ch;margin:0 0 24px}
 .footer{border-top:1px solid var(--line);padding:28px 0 48px;color:var(--muted);font-size:.88rem;font-family:var(--mono)}
 
+
+/* ===== flagship lab ===== */
+.flag{background:radial-gradient(900px 380px at 88% 0%,rgba(127,178,255,.09),transparent 60%),var(--bg)}
+.eyebrow{font-family:var(--mono);font-size:.78rem;color:var(--mint);letter-spacing:.1em;text-transform:uppercase;margin:0 0 10px}
+.flag .meta{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:.92rem;color:var(--muted);margin:0 0 16px}
+.flag .lead{font-size:1.2rem;line-height:1.55;color:var(--text);max-width:68ch;margin:0 0 24px}
+.stats{list-style:none;margin:0 0 30px;padding:0;display:grid;gap:12px;grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (min-width:760px){.stats{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.stats li{background:var(--panel);border:1px solid var(--line);border-top:3px solid var(--mint);border-radius:4px;padding:14px 16px}
+.stats b{display:block;font-family:var(--mono);font-size:2rem;line-height:1.1;color:var(--text)}
+.stats span{color:var(--muted);font-size:.92rem}
+.b.wip{color:var(--amber)}
+.for{margin:18px 0 0;font-family:var(--mono);font-size:.82rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 16px;align-items:center}
+.for a{color:var(--mint)}
+
+.lens{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:0 0 6px}
+.lens-l{font-family:var(--mono);font-size:.8rem;color:var(--muted);margin-right:4px}
+.lens button,.tabsb button{font-family:var(--mono);font-size:.8rem;padding:6px 14px;border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:999px;cursor:pointer}
+.lens button:hover,.tabsb button:hover{border-color:var(--mint)}
+.lens button[aria-pressed="true"],.tabsb button[aria-pressed="true"]{background:var(--mint);color:#04120e;border-color:var(--mint);font-weight:700}
+.lens-note{margin:6px 0 16px;color:var(--muted);font-size:.95rem;min-height:1.6em;max-width:80ch}
+
+.labgrid{display:block}
+.labgrid>*{min-width:0}
+.flag .diagram{margin:0}
+.flag .dg{min-width:660px}
+.dg .tx{font-size:14.5px}.dg .sm{font-size:12.5px}
+.dg .nd{cursor:pointer}
+.dg .nd .bx{transition:stroke .15s,fill .15s}
+.dg .nd:hover .bx,.dg .nd:focus .bx{stroke:var(--mint)}
+.dg .nd:focus{outline:none}
+.dg .nd:focus-visible .bx{stroke:var(--mint);stroke-width:3}
+.dg .nd.sel .bx{stroke:var(--mint);stroke-width:3;fill:#13243d}
+.dg .nd.wipn .bx{stroke:var(--amber);stroke-dasharray:6 4}
+.dg .nd.sel.wipn .bx{stroke:var(--mint);stroke-dasharray:none}
+.dg .nd.dim{opacity:.28}
+.dg .nd.off{opacity:.1;pointer-events:none}
+.dg .ln{transition:opacity .2s}
+.dg .ln.off{opacity:.06}
+.dg .tag{fill:var(--muted);font:400 11px var(--mono)}
+.dg .nd{transition:opacity .2s}
+@media (prefers-reduced-motion:reduce){.dg .nd,.dg .ln,.dg .nd .bx{transition:none}}
+
+.replay{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:center;margin:0;padding:12px 14px;background:var(--panel);border:1px solid var(--line);border-radius:6px}
+.replay .btn{padding:6px 14px;font-size:.82rem}
+.replay input[type=range]{width:100%;accent-color:var(--mint)}
+.replay output{font-family:var(--mono);font-size:.9rem;color:var(--mint);min-width:5ch;text-align:right}
+.rp-text{margin:8px 0 14px;color:var(--muted);font-size:.95rem;min-height:3em}
+.rp-text strong{color:var(--text)}
+
+.npanel{background:var(--panel2);border:1px solid var(--line);border-radius:6px;padding:18px 22px;margin-top:14px}
+.np-cols{display:grid;gap:0 28px;grid-template-columns:minmax(0,1fr)}
+@media (min-width:900px){.np-cols{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.np-hint{margin:0;color:var(--muted)}
+.np-head{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:.85rem;color:var(--muted)}
+.np-title{margin:8px 0 2px;font-size:1.2rem;line-height:1.3}
+.np-role{margin:0 0 6px;color:var(--muted)}
+.np-h{font-family:var(--mono);font-size:.78rem;color:var(--mint);margin:14px 0 4px;text-transform:uppercase;letter-spacing:.06em}
+.npanel ul{margin:0;padding-left:20px}
+.npanel li{margin:0 0 6px;font-size:.95rem}
+.np-ev{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.np-ev button{font-family:var(--mono);font-size:.78rem;padding:5px 12px;border:1px solid var(--mint);background:transparent;color:var(--mint);border-radius:4px;cursor:pointer}
+.np-ev button:hover{background:rgba(94,242,208,.12);color:#fff}
+
+.tabsb{display:flex;gap:8px;flex-wrap:wrap;margin:36px 0 14px}
+.tpanel[hidden]{display:none}
+.tt{width:100%;min-width:620px;border-collapse:collapse;font-size:.92rem}
+.tt th{text-align:left;font-family:var(--mono);font-size:.76rem;font-weight:500;color:var(--muted);padding:10px 14px;border-bottom:1px solid var(--line);background:var(--panel2)}
+.tt td{padding:9px 14px;border-top:1px solid var(--line);vertical-align:top}
+.tt tbody tr:first-child td{border-top:0}
+.tt code{white-space:nowrap}
+.tt .id{font-family:var(--mono);font-size:.82rem;color:var(--blue);white-space:nowrap}
+.tpanel .note.plan{border-left-color:var(--violet)}
+
+.doms{list-style:none;margin:0;padding:0;display:grid;gap:12px;grid-template-columns:minmax(0,1fr)}
+@media (min-width:760px){.doms{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (min-width:1000px){.doms{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.doms li{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:16px 18px;display:grid;gap:8px;align-content:start;justify-items:start;min-width:0}
+.doms h4{margin:0;font-size:1.02rem;line-height:1.3}
+.doms p{margin:0;color:var(--muted);font-size:.94rem}
+.doms.next li{border-style:dashed}
+.flag .shots{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (min-width:900px){.flag .shots{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.flag .shots .thumb{aspect-ratio:16/10}
+.flag .shots .thumb img{width:100%;height:100%;object-fit:cover;object-position:top left}
+.flag .shots .contain .thumb img{object-fit:contain;object-position:center}
+@media (max-width:560px){.replay{grid-template-columns:1fr auto}.replay input[type=range]{grid-column:1 / -1;grid-row:2}}
+
+/* print: a clean white page for recruiters who print */
+@media print{
+  :root{--bg:#fff;--panel:#fff;--panel2:#f4f4f4;--line:#c8c8c8;--text:#111;--muted:#444;--mint:#00574a;--blue:#1a4fa0;--amber:#8a5a00;--violet:#5a3aa0}
+  .top,.term,.chips,.fbar,.lens,.replay,.tabsb,.actions,.for,.skip,dialog,.np-ev{display:none!important}
+  .hero{background:none!important;padding:16px 0}.hero::after{display:none}
+  section{padding:20px 0;break-inside:auto}
+  .card .body{display:block}
+  .tpanel[hidden]{display:block!important}
+  a{color:#111}
+}
+.tpanel .note{margin:0 0 12px}
+
+.plansteps{margin:0 0 6px;padding-left:22px;display:grid;gap:8px;max-width:84ch}
+.plansteps li{color:var(--muted);font-size:.97rem}
+.plansteps strong{color:var(--text)}
+.tpanel .done{margin:6px 0 24px;padding:10px 14px;border-left:3px solid var(--mint);background:var(--panel2);color:var(--muted);font-size:.95rem;max-width:84ch}
+.tpanel .done strong{color:var(--mint);font-weight:600}
+.tpanel h3.sub{margin:22px 0 10px}
+
+.fbar button.feat{border-color:var(--mint);color:var(--mint)}
+.fbar button.feat[aria-pressed="true"]{background:var(--mint);color:#04120e}
+
 /* lightbox */
 dialog{border:1px solid var(--line);background:var(--panel);padding:14px;width:min(1100px,95vw);max-height:94vh;border-radius:8px;color:var(--text)}
 dialog::backdrop{background:rgba(0,0,0,.82)}
@@ -281,6 +394,7 @@ dialog img{display:block;max-width:100%;max-height:70vh;margin:0 auto;background
   <div class="wrap">
     <a class="brand" href="#top">shayan<span>@</span>cyberlab</a>
     <nav aria-label="Sections">
+      <a href="#btir">blue-team lab</a>
       <a href="#pentest">pentest</a>
       <a href="#projects">projects</a>
       <a href="#proof">proof</a>
@@ -301,14 +415,16 @@ dialog img{display:block;max-width:100%;max-height:70vh;margin:0 auto;background
     <div class="actions">
       <a class="btn primary" href="mailto:shayann2326@gmail.com">Email</a>
       <a class="btn" href="cv.pdf" download>Download CV</a>
+      <a class="btn" href="#btir">Blue-team lab</a>
       <a class="btn" href="#certs">View certificates</a>
     </div>
+    <p class="for"><span>Jump to:</span> <a href="#btir">network and identity design</a> <a href="#pentest">offensive findings</a> <a href="#btir" data-btir-tab="detect">detection plan</a> <a href="#btir" data-btir-tab="gaps">known gaps</a> <a href="#labs">labs</a></p>
 
     <ul class="snap" aria-label="At a glance">
       <li><strong>Certified.</strong> CEH and Cisco CyberOps Associate. Security+ in progress.</li>
       <li><strong>Tested.</strong> An internal IT/OT pentest: 24 findings, 6 of them critical.</li>
       <li><strong>Defended.</strong> A Cowrie SSH honeypot feeding Elasticsearch and Kibana, plus Suricata, Wazuh and Splunk.</li>
-      <li><strong>Built.</strong> Windows domains, Linux servers, Proxmox, VMware, Kubernetes on Talos and three clouds.</li>
+      <li><strong>Built.</strong> A 14-VM company network with routing, firewalls, Active Directory, a web app, an OT network and backups. Also Proxmox, Kubernetes on Talos and three clouds.</li>
     </ul>
 
     <div class="term" role="region" aria-label="Interactive terminal">
@@ -332,6 +448,175 @@ dialog img{display:block;max-width:100%;max-height:70vh;margin:0 auto;background
     </div>
   </div>
 </div>
+
+<section id="btir" class="flag" aria-labelledby="h-btir">
+  <div class="wrap">
+    <p class="eyebrow">flagship project</p>
+    <h2 id="h-btir">blue-team lab</h2>
+    <p class="meta"><span class="b built">built</span><span>Individual project for the Howest Blue Teaming and Incident Response course. Still growing.</span></p>
+    <p class="lead">Katie's Kitchens is a fictional company with an office, a factory and a home user, joined by a fake internet. I built its whole network in VMware, then started hardening and defending it.</p>
+
+    <ul class="stats" aria-label="The lab in numbers">
+      <li><b>14</b><span>virtual machines</span></li>
+      <li><b>3</b><span>sites and a fake internet</span></li>
+      <li><b>8</b><span>areas working today</span></li>
+      <li><b>2</b><span>left: remote access and SIEM</span></li>
+    </ul>
+
+    <div class="lens" id="lens" role="group" aria-label="Highlight the diagram by interest">
+      <span class="lens-l">Highlight for</span>
+      <button type="button" data-lens="all" aria-pressed="true">everything</button>
+      <button type="button" data-lens="arch" aria-pressed="false">architecture</button>
+      <button type="button" data-lens="off" aria-pressed="false">offensive</button>
+      <button type="button" data-lens="det" aria-pressed="false">detection</button>
+      <button type="button" data-lens="res" aria-pressed="false">resilience</button>
+      <button type="button" data-lens="ot" aria-pressed="false">OT / ICS</button>
+    </div>
+    <p class="lens-note" id="lens-note" aria-live="polite">Select a machine in the diagram, or use the slider to replay the build.</p>
+
+    <div class="labgrid">
+      <div class="replay" role="group" aria-label="Replay the build">
+        <button type="button" class="btn" id="rp-play">Replay the build</button>
+        <input type="range" id="rp-range" min="0" max="6" step="1" value="6" aria-label="Build date">
+        <output id="rp-date" for="rp-range">Oct 28</output>
+      </div>
+      <p class="rp-text" id="rp-text" aria-live="polite"></p>
+      <figure class="diagram">
+        <div class="dscroll"><svg class="dg" id="labsvg" viewBox="0 0 1000 440" role="group" aria-label="Interactive network diagram of the Katie's Kitchens lab. Select a machine for details."><rect class="zone" x="15" y="140" width="210" height="215" rx="8"/><text class="tag" x="29" y="162">HOME</text><rect class="zone" x="245" y="140" width="490" height="215" rx="8"/><text class="tag" x="259" y="162">COMPANY (IT)</text><rect class="zone" x="760" y="140" width="225" height="215" rx="8"/><text class="tag" x="774" y="162">FACTORY (OT)</text><path class="ln" data-needs="isp home-router" d="M490 76V122H120V185"/><path class="ln" data-needs="isp company-router" d="M490 76V185"/><path class="ln" data-needs="isp factory-router" d="M490 76V122H872.5V185"/><path class="ln" data-needs="home-router home-client" d="M120 229V270"/><path class="ln" data-needs="company-router dc01" d="M490 229V252H298V270"/><path class="ln" data-needs="company-router web" d="M490 229V252H394V270"/><path class="ln" data-needs="company-router app-2" d="M490 229V252H490V270"/><path class="ln" data-needs="company-router db-app-1" d="M490 229V252H586V270"/><path class="ln" data-needs="company-router win-client" d="M490 229V252H682V270"/><path class="ln" data-needs="factory-router hmi" d="M872.5 229V252H819.5V270"/><path class="ln" data-needs="factory-router plc" d="M872.5 229V252H924.5V270"/><g class="nd" data-id="isp" data-first="3" data-lens="arch det" role="button" tabindex="0" aria-label="ISP, the fake internet, DNS, firewall rules, SSH. Press Enter for details."><rect class="bx" x="390" y="18" width="200" height="58" rx="6"/><text class="tx" x="490" y="43" text-anchor="middle">ISP, the fake internet</text><text class="sm" x="490" y="62" text-anchor="middle">DNS, firewall rules, SSH</text></g><g class="nd" data-id="home-router" data-first="0" data-lens="arch" role="button" tabindex="0" aria-label="Home router, Alpine Linux. Press Enter for details."><rect class="bx" x="35" y="185" width="170" height="44" rx="6"/><text class="tx" x="120" y="204" text-anchor="middle">Home router</text><text class="sm" x="120" y="221" text-anchor="middle">Alpine Linux</text></g><g class="nd" data-id="company-router" data-first="3" data-lens="arch det off" role="button" tabindex="0" aria-label="Company router, Debian, firewall logging. Press Enter for details."><rect class="bx" x="390" y="185" width="200" height="44" rx="6"/><text class="tx" x="490" y="204" text-anchor="middle">Company router</text><text class="sm" x="490" y="221" text-anchor="middle">Debian, firewall logging</text></g><g class="nd" data-id="factory-router" data-first="3" data-lens="arch ot off" role="button" tabindex="0" aria-label="Factory router, IT/OT boundary. Press Enter for details."><rect class="bx" x="777.5" y="185" width="190" height="44" rx="6"/><text class="tx" x="872.5" y="204" text-anchor="middle">Factory router</text><text class="sm" x="872.5" y="221" text-anchor="middle">IT/OT boundary</text></g><g class="nd" data-id="home-client" data-first="3" data-lens="off" role="button" tabindex="0" aria-label="Client, Linux. Press Enter for details."><rect class="bx" x="65" y="270" width="110" height="64" rx="6"/><text class="tx" x="120" y="298" text-anchor="middle">Client</text><text class="sm" x="120" y="318" text-anchor="middle">Linux</text></g><g class="nd" data-id="dc01" data-first="1" data-lens="arch off det" role="button" tabindex="0" aria-label="DC01, AD, DNS. Press Enter for details."><rect class="bx" x="254" y="270" width="88" height="64" rx="6"/><text class="tx" x="298" y="298" text-anchor="middle">DC01</text><text class="sm" x="298" y="318" text-anchor="middle">AD, DNS</text></g><g class="nd" data-id="web" data-first="3" data-lens="off det res" role="button" tabindex="0" aria-label="Web, nginx. Press Enter for details."><rect class="bx" x="350" y="270" width="88" height="64" rx="6"/><text class="tx" x="394" y="298" text-anchor="middle">Web</text><text class="sm" x="394" y="318" text-anchor="middle">nginx</text></g><g class="nd" data-id="app-2" data-first="2" data-lens="off det" role="button" tabindex="0" aria-label="App server, AlmaLinux. Press Enter for details."><rect class="bx" x="446" y="270" width="88" height="64" rx="6"/><text class="tx" x="490" y="298" text-anchor="middle">App server</text><text class="sm" x="490" y="318" text-anchor="middle">AlmaLinux</text></g><g class="nd" data-id="db-app-1" data-first="2" data-lens="off det res" role="button" tabindex="0" aria-label="App + DB, employee app. Press Enter for details."><rect class="bx" x="542" y="270" width="88" height="64" rx="6"/><text class="tx" x="586" y="298" text-anchor="middle">App + DB</text><text class="sm" x="586" y="318" text-anchor="middle">employee app</text></g><g class="nd" data-id="win-client" data-first="3" data-lens="off det" role="button" tabindex="0" aria-label="Client, Windows 11. Press Enter for details."><rect class="bx" x="638" y="270" width="88" height="64" rx="6"/><text class="tx" x="682" y="298" text-anchor="middle">Client</text><text class="sm" x="682" y="318" text-anchor="middle">Windows 11</text></g><g class="nd" data-id="hmi" data-first="3" data-lens="ot off" role="button" tabindex="0" aria-label="HMI, FUXA. Press Enter for details."><rect class="bx" x="772" y="270" width="95" height="64" rx="6"/><text class="tx" x="819.5" y="298" text-anchor="middle">HMI</text><text class="sm" x="819.5" y="318" text-anchor="middle">FUXA</text></g><g class="nd" data-id="plc" data-first="3" data-lens="ot off" role="button" tabindex="0" aria-label="PLC, OpenPLC. Press Enter for details."><rect class="bx" x="877" y="270" width="95" height="64" rx="6"/><text class="tx" x="924.5" y="298" text-anchor="middle">PLC</text><text class="sm" x="924.5" y="318" text-anchor="middle">OpenPLC</text></g><g class="nd" data-id="kali" data-first="6" data-lens="off" role="button" tabindex="0" aria-label="Attacker (Kali), attacker VM. Press Enter for details."><rect class="bx" x="305" y="378" width="200" height="46" rx="6"/><text class="tx" x="405" y="398" text-anchor="middle">Attacker (Kali)</text><text class="sm" x="405" y="415" text-anchor="middle">attacker VM</text></g><g class="nd" data-id="backup-vm" data-first="6" data-lens="res" role="button" tabindex="0" aria-label="Backup VM, backup side. Press Enter for details."><rect class="bx" x="525" y="378" width="200" height="46" rx="6"/><text class="tx" x="625" y="398" text-anchor="middle">Backup VM</text><text class="sm" x="625" y="415" text-anchor="middle">backup side</text></g><text class="tag" x="305" y="436">SUPPORT VMS, NOT DRAWN INTO THE NETWORK</text><g transform="translate(15,412)"><rect x="0" y="0" width="12" height="12" rx="2" class="bx"/><text class="tag" x="20" y="10">built</text><rect x="70" y="0" width="12" height="12" rx="2" class="bx" style="stroke:var(--amber);stroke-dasharray:3 2"/><text class="tag" x="90" y="10">in progress</text></g></svg></div>
+        <figcaption>Select any machine. Addresses and most hostnames are left out. Segment detail inside the company site is simplified.</figcaption>
+      </figure>
+      <aside class="npanel" id="npanel" aria-label="Machine details" aria-live="polite">
+        <p class="np-hint">Select a machine in the diagram. Each one lists what I configured, how I checked it, and what is still open. Where a screenshot exists, you can open it from here.</p>
+      </aside>
+    </div>
+
+    <div class="tabsb" id="tabsb" role="group" aria-label="Deeper views of the lab">
+      <button type="button" data-p="notes" aria-pressed="true">design notes</button>
+      <button type="button" data-p="detect" aria-pressed="false">detection plan</button>
+      <button type="button" data-p="gaps" aria-pressed="false">attack surface and known gaps</button>
+      <button type="button" data-p="resil" aria-pressed="false">backup and recovery</button>
+      <button type="button" data-p="plan" aria-pressed="false">how I will finish it</button>
+    </div>
+
+    <div class="tpanel" id="tp-notes">
+      <p class="intro">The choices behind the build, and what each one costs.</p>
+      <div class="tscroll"><table class="tt">
+        <thead><tr><th>Decision</th><th>Why</th><th>Trade-off</th></tr></thead>
+        <tbody>
+          <tr><td>One router per site, joined through an ISP VM</td><td>WAN routing, DNS and firewall behaviour can be tested like three separate networks, and a site can be isolated cleanly.</td><td>More VMs to run and maintain.</td></tr>
+          <tr><td>Identity and DNS first</td><td>Windows and Linux hosts use the domain controller for DNS, so name resolution and logons depend on it. Building it early made every later step easier to debug.</td><td>The domain controller is a single point of failure in the lab.</td></tr>
+          <tr><td>Log what the firewall would drop before enforcing it</td><td>The company router counts traffic its policy would block, by interface, source, destination and port. I can review the impact of a rule before it breaks something.</td><td>Audit mode protects nothing until the policy is enforced.</td></tr>
+          <tr><td>Tagged, tiered backups</td><td>restic snapshots are tagged by what they hold (site, nginx configuration, database) and pruned by a retention policy, so each asset can be restored on its own.</td><td>A backup is only proven once a restore has been tested. That test is still to do.</td></tr>
+          <tr><td>A separate OT network behind its own router</td><td>The factory process (PLC and HMI) is isolated from office systems, so the IT/OT boundary can be tested on its own.</td><td>The allowed flows across that boundary are not defined or tested yet.</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div class="tpanel" id="tp-detect" hidden>
+      <p class="note plan">Planned, not built yet. This is the backlog for the SIEM step. Each row names the log source, what to collect, the detection idea and the MITRE ATT&amp;CK technique it maps to.</p>
+      <div class="tscroll"><table class="tt">
+        <thead><tr><th>Log source</th><th>What to collect</th><th>Detection idea</th><th>ATT&amp;CK</th></tr></thead>
+        <tbody>
+          <tr><td>Domain controller</td><td>Security events 4625, 4768, 4771</td><td>Many failed logons across many accounts from one source</td><td class="id">T1110.003</td></tr>
+          <tr><td>Domain controller</td><td>Event 4769, ticket encryption type</td><td>One account requesting service tickets for many service accounts, with weak encryption</td><td class="id">T1558.003</td></tr>
+          <tr><td>Domain controller</td><td>Event 4662, directory replication rights</td><td>Replication requests from an account that is not a domain controller</td><td class="id">T1003.006</td></tr>
+          <tr><td>Domain controller</td><td>Events 4728, 4732, 4756</td><td>Changes to privileged group membership</td><td class="id">T1098</td></tr>
+          <tr><td>Windows hosts</td><td>Event 4624 (network logon) and the WinRM operational log</td><td>New remote management sessions from unusual hosts</td><td class="id">T1021.006</td></tr>
+          <tr><td>Linux servers</td><td>SSH authentication log</td><td>Repeated failures followed by a success from one source</td><td class="id">T1110.001, T1078</td></tr>
+          <tr><td>Web server</td><td>nginx access and error logs</td><td>Bursts of failed logins and scanner-like requests against the login page</td><td class="id">T1110, T1190</td></tr>
+          <tr><td>Routers and ISP</td><td>Firewall would-drop and drop logs</td><td>One host trying many ports or many hosts, and attempts to cross between zones</td><td class="id">T1046</td></tr>
+          <tr><td>Factory router</td><td>Connection logs for the OT network</td><td>Any connection from the IT side to the HMI or PLC that is not on the allow-list</td><td class="id">policy check</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div class="tpanel" id="tp-gaps" hidden>
+      <p class="note">I would rather list these myself. This is what an attacker would look at first, and what I plan to do about it.</p>
+      <div class="tscroll"><table class="tt">
+        <thead><tr><th>Area</th><th>Today</th><th>Risk</th><th>Planned fix</th></tr></thead>
+        <tbody>
+          <tr><td>Remote administration</td><td>WinRM and SSH are enabled.</td><td>Brute force and credential reuse.</td><td>Limit the source hosts, use keys for SSH, log every session</td></tr>
+          <tr><td>Central logging</td><td>Logs stay on each machine.</td><td>An attack that touches several hosts is not seen as one story.</td><td>SIEM with the detection plan above</td></tr>
+          <tr><td>IT to OT path</td><td>The factory network is reachable through its router.</td><td>A foothold in IT could reach the HMI and PLC.</td><td>An explicit allow-list across the boundary, tested from Kali</td></tr>
+          <tr><td>Untested controls</td><td>The attacker VM is ready, but no attack exercises have run yet.</td><td>The controls are unproven.</td><td>Attack-and-respond exercises, written up as findings</td></tr>
+          <tr><td>Restores</td><td>Backups run hourly, retention was checked with a dry run.</td><td>A backup that was never restored is unproven.</td><td>Restore test for each tagged asset</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div class="tpanel" id="tp-resil" hidden>
+      <p class="intro">What is backed up, how often, and for how long. Taken from the restic output in the screenshots.</p>
+      <div class="tscroll"><table class="tt">
+        <thead><tr><th>Asset</th><th>Tool and tag</th><th>Frequency</th><th>Retention policy</th><th>Restore tested</th></tr></thead>
+        <tbody>
+          <tr><td>Website files</td><td>restic, tag <code>site</code></td><td>Hourly</td><td>24 hourly, 7 daily, 4 weekly, 6 monthly (dry run)</td><td>Not yet</td></tr>
+          <tr><td>nginx configuration</td><td>restic, tag <code>nginx-config</code></td><td>Hourly</td><td>Same policy (dry run)</td><td>Not yet</td></tr>
+          <tr><td>Customer database dump</td><td>restic, tag <code>db</code></td><td>Hourly</td><td>Same policy (dry run)</td><td>Not yet</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div class="tpanel" id="tp-plan" hidden>
+      <p class="note plan">Two parts are left: remote access and the SIEM. This is how I plan to do each one, and how I will know it works.</p>
+
+      <h3 class="sub">Remote access</h3>
+      <ol class="plansteps">
+        <li><strong>Choose one admin path.</strong> Administration happens from one defined source, not from any machine.</li>
+        <li><strong>Harden SSH on the Linux machines.</strong> Key-based login, passwords and root login switched off, and only named users allowed.</li>
+        <li><strong>Restrict WinRM on the Windows machines.</strong> Only the admin source can reach it, with separate admin accounts and least privilege.</li>
+        <li><strong>Enforce it at the router.</strong> A firewall rule on the company router allows remote administration only from that source, and the would-drop log shows the rest.</li>
+        <li><strong>Log every session.</strong> SSH authentication logs and Windows logon events are kept, ready for the SIEM.</li>
+        <li><strong>Test it from Kali.</strong> Password guessing and logins from other hosts must fail, and each attempt must show up in the logs.</li>
+      </ol>
+      <p class="done"><strong>Done when:</strong> remote login works only from the admin path, and every attempt is logged.</p>
+
+      <h3 class="sub">SIEM</h3>
+      <ol class="plansteps">
+        <li><strong>Collect.</strong> Windows Security logs from the domain controller and clients, Linux authentication logs, nginx logs, and the firewall would-drop logs from the routers.</li>
+        <li><strong>Normalise.</strong> Map each source to the same fields: host, user, source address and event.</li>
+        <li><strong>Build the detections</strong> from the detection plan, starting with password spraying, Kerberoasting, SSH and web login brute force, and traffic crossing from IT to OT.</li>
+        <li><strong>Attack it from Kali.</strong> Run each attack against the company site and check that the matching alert fires.</li>
+        <li><strong>Tune.</strong> Remove false alarms using normal activity, so the alerts stay useful.</li>
+        <li><strong>Write one incident report.</strong> Timeline, detection, containment and lessons, for one of the attacks.</li>
+      </ol>
+      <p class="done"><strong>Done when:</strong> each detection fires on its attack from Kali and stays quiet during normal use.</p>
+    </div>
+
+    <h3 class="sub">Built and working</h3>
+    <ul class="doms">
+      <li><span class="b built">built</span><h4>Networking and routing</h4><p>Three sites, each behind its own router, with separate subnets and static routes. A script run from the home client checks that every host answers.</p></li>
+      <li><span class="b built">built</span><h4>Firewalls</h4><p>Packet-filter rules on the ISP (nftables). The company router also logs the traffic its policy would drop, so rules can be reviewed before they are enforced.</p></li>
+      <li><span class="b built">built</span><h4>Identity and DNS</h4><p>A Windows Server domain controller runs Active Directory and DNS for the company domain. Windows 11 and Linux machines use it, and WinRM remote management works with a domain account.</p></li>
+      <li><span class="b built">built</span><h4>Web application</h4><p>An employee login and a customer dashboard, served through nginx with an application tier and a database behind it, reached by an internal name.</p></li>
+      <li><span class="b built">built</span><h4>Certificates and HTTPS</h4><p>The web app is served over HTTPS with certificates, so logins and sessions are no longer sent in clear text.</p></li>
+      <li><span class="b built">built</span><h4>Attacker machine</h4><p>A Kali Linux VM is set up for the attack side of the exercises.</p></li>
+      <li><span class="b built">built</span><h4>Industrial (OT) network</h4><p>A separate factory network with a FUXA HMI and an OpenPLC controller in Docker, behind its own router.</p></li>
+      <li><span class="b built">built</span><h4>Backup and recovery</h4><p>restic backs up the website, the nginx configuration and a database dump every hour, with a backup VM on the backup side. The retention policy was checked with a dry run.</p></li>
+    </ul>
+
+    <h3 class="sub">Left to do</h3>
+    <ul class="doms next">
+      <li><span class="b wip">in progress</span><h4>Remote access</h4><p>WinRM and SSH work for administration today. Next is limiting who can log in, and from where, then testing it from Kali. The steps are in "how I will finish it".</p></li>
+      <li><span class="b concept">next</span><h4>SIEM and monitoring</h4><p>Collect logs from the domain controller, routers and servers, build the detections from the plan, then attack from Kali, tune them and write an incident report.</p></li>
+    </ul>
+
+    <h3 class="sub">Proof from the build</h3>
+    <div class="shots">
+      <figure><button type="button" class="thumb" data-lb="btir" data-ev="ad-promotion" data-cap="Pre-check before promoting the domain controller, in PowerShell."><img src="assets/btir-ad-promotion.webp" width="1095" height="503" alt="PowerShell on the domain controller showing a successful pre-check for a new Active Directory forest" loading="lazy"></button><figcaption>Pre-check before promoting the domain controller, in PowerShell.</figcaption></figure>
+      <figure><button type="button" class="thumb" data-lb="btir" data-ev="dns-manager" data-cap="DNS Manager on the domain controller, with the company zones."><img src="assets/btir-dns-manager.webp" width="871" height="491" alt="DNS Manager on the domain controller showing the forward lookup zones of the company domain" loading="lazy"></button><figcaption>DNS Manager on the domain controller, with the company zones.</figcaption></figure>
+      <figure><button type="button" class="thumb" data-lb="btir" data-ev="web-dashboard" data-cap="The employee dashboard, reached by its internal name. Captured before HTTPS was added."><img src="assets/btir-web-dashboard.webp" width="1400" height="580" alt="The Katie&#x27;s Kitchens employee dashboard with a table of sample customers" loading="lazy"></button><figcaption>The employee dashboard, reached by its internal name. Captured before HTTPS was added.</figcaption></figure>
+      <figure><button type="button" class="thumb" data-lb="btir" data-ev="hmi" data-cap="FUXA HMI process view: heater, fan and alarm."><img src="assets/btir-hmi.webp" width="1400" height="546" alt="FUXA HMI editor showing a process view with a heater gauge, a fan and an alarm" loading="lazy"></button><figcaption>FUXA HMI process view: heater, fan and alarm.</figcaption></figure>
+      <figure><button type="button" class="thumb" data-lb="btir" data-ev="plc-logs" data-cap="OpenPLC runtime log in Docker: PLC state running."><img src="assets/btir-plc-logs.webp" width="881" height="722" alt="Docker log of the OpenPLC runtime showing the PLC state as running" loading="lazy"></button><figcaption>OpenPLC runtime log in Docker: PLC state running.</figcaption></figure>
+      <figure><button type="button" class="thumb" data-lb="btir" data-ev="backup-retention" data-cap="restic retention policy checked with a dry run on the web server."><img src="assets/btir-backup-retention.webp" width="1400" height="800" alt="Terminal showing restic snapshots and a retention policy dry run on the web server" loading="lazy"></button><figcaption>restic retention policy checked with a dry run on the web server.</figcaption></figure>
+      <figure><button type="button" class="thumb" data-lb="btir" data-ev="isp-services" data-cap="Firewall, DNS and SSH services started on the ISP VM."><img src="assets/btir-isp-services.webp" width="1075" height="417" alt="Terminal on the ISP VM showing nftables, unbound and sshd started" loading="lazy"></button><figcaption>Firewall, DNS and SSH services started on the ISP VM.</figcaption></figure>
+      <figure class="contain"><button type="button" class="thumb" data-lb="btir" data-ev="firewall-log" data-cap="Would-drop firewall log on the company router. Addresses redacted."><img src="assets/btir-firewall-log.webp" width="771" height="119" alt="Company router log summary of traffic the firewall policy would drop, grouped by interface, source, destination and port, with addresses redacted" loading="lazy"></button><figcaption>Would-drop firewall log on the company router. Addresses redacted.</figcaption></figure>
+      <figure class="contain"><button type="button" class="thumb" data-lb="btir" data-ev="reachability" data-cap="Reachability script: every host answers. Addresses are cropped out."><img src="assets/btir-reachability.webp" width="232" height="360" alt="Output of a reachability script listing hosts at the home, factory and company sites, all marked as reachable" loading="lazy"></button><figcaption>Reachability script: every host answers. Addresses are cropped out.</figcaption></figure>
+    </div>
+
+    <p class="note">The company scenario and the goals come from the course. The build, the configuration and this write-up are mine. Course documents are not published here. Addresses are cropped or redacted in the screenshots, and the build dates come from the screenshots.</p>
+    <p class="tools"><strong>Tools:</strong> VMware Workstation, Windows Server (Active Directory, DNS), Windows 11, Alpine Linux, AlmaLinux, Debian, Kali Linux, nftables, Unbound, nginx, restic, Docker, OpenPLC, FUXA, PowerShell, WinRM, SSH, Bash</p>
+  </div>
+</section>
 
 <section id="start" aria-labelledby="h-start">
   <div class="wrap">
@@ -448,6 +733,8 @@ dialog img{display:block;max-width:100%;max-height:70vh;margin:0 auto;background
 
     <div class="fbar" role="group" aria-label="Filter projects by area" id="pf">
       <button type="button" data-f="all" aria-pressed="true">All</button>
+      <button type="button" class="feat" data-f="blue-team-lab" aria-pressed="false">Blue-team lab</button>
+      <button type="button" class="feat" data-f="ot-pentest" aria-pressed="false">Pentest</button>
       <button type="button" data-f="offensive" aria-pressed="false">Offensive</button>
       <button type="button" data-f="defensive" aria-pressed="false">Defensive</button>
       <button type="button" data-f="infrastructure" aria-pressed="false">Infrastructure</button>
@@ -456,6 +743,24 @@ dialog img{display:block;max-width:100%;max-height:70vh;margin:0 auto;background
     </div>
 
     <div class="grid" id="pgrid">
+
+      <details class="card" data-id="blue-team-lab" data-label="built" data-a="infrastructure">
+        <summary>
+          <div class="meta"><span class="b built">built</span><span>Individual project, Howest</span></div>
+          <h3>Blue-team lab: a whole company network</h3>
+          <p class="one">14 virtual machines across three sites, with routing, firewalls, Active Directory, a web app, an OT network and backups.</p>
+        </summary>
+        <div class="body">
+          <ul>
+            <li>Built a fictional company with an office, a factory and a home user, joined through a fake internet, in VMware.</li>
+            <li>Set up routing between the sites, firewall rules with would-drop logging, and a Windows Server domain controller with Active Directory and DNS.</li>
+            <li>Hosted a web application behind nginx with a database, and automated hourly restic backups with a retention policy.</li>
+            <li>Added an OT network with an OpenPLC controller and a FUXA HMI, a backup VM and a Kali attacker VM. The web app is served over HTTPS. Remote access hardening and a SIEM are the last two parts, with a written plan and detection backlog.</li>
+          </ul>
+          <p class="more"><a href="#btir">Open the interactive diagram, detection plan and known gaps.</a></p>
+          <p class="tools"><strong>Tools:</strong> VMware, Windows Server, nftables, nginx, restic, Docker, OpenPLC, FUXA, PowerShell, Kali Linux</p>
+        </div>
+      </details>
 
       <details class="card" data-id="ot-pentest" data-label="lab" data-a="offensive" open>
         <summary>
@@ -801,6 +1106,7 @@ dialog img{display:block;max-width:100%;max-height:70vh;margin:0 auto;background
         <li><span class="b lab">lab</span><span>Group Policy, including local versus domain policy, password and account lockout policies, user-rights assignment and auditing.</span></li>
         <li><span class="b lab">lab</span><span>NTFS permissions with ACEs and SACLs, least privilege and LAPS for local administrator passwords.</span></li>
         <li><span class="b lab">lab</span><span>Managed users, groups and organizational units, and administered the domain with RSAT and PowerShell.</span></li>
+        <li><span class="b built">built</span><span>Promoted a domain controller with PowerShell and ran AD DNS for the blue-team lab. <a href="#btir">See the lab.</a></span></li>
         <li><span class="b studied">studied</span><span>Kerberos, LDAP, AD replication, SYSVOL, NetLogon and NTDS.dit, and privileged groups such as Domain Admins and Backup Operators.</span></li>
       </ul>
       <figure class="diagram"><div class="dscroll"><svg class="dg" viewBox="0 0 720 230" role="img" aria-labelledby="d3t"><title id="d3t">Active Directory lab: two domain controllers replicate with each other, and a Windows 11 client is joined to the domain and receives Group Policy.</title><defs><marker id="a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z"/></marker></defs>
@@ -840,6 +1146,7 @@ dialog img{display:block;max-width:100%;max-height:70vh;margin:0 auto;background
         <li><span class="b lab">lab</span><span>Network segmentation with VLANs, and troubleshooting of connectivity and policy problems.</span></li>
         <li><span class="b lab">lab</span><span>Set up pfSense and OPNsense firewalls with OpenVPN and WireGuard, on routers, switches, DHCP and VMware virtual networks.</span></li>
         <li><span class="b lab">lab</span><span>Ran Suricata intrusion detection on OPNsense, with a Wazuh agent installed.</span></li>
+        <li><span class="b built">built</span><span>A three-site lab network with routing, nftables rules and would-drop firewall logging. <a href="#btir">See the blue-team lab.</a></span></li>
         <li><span class="b lab">lab</span><span>Scanned with Nmap, troubleshot DNS with tcpdump, analysed packets in Wireshark and watched the network with arpwatch.</span></li>
         <li><span class="b studied">studied</span><span>Firewall logging, monitoring and security-event analysis.</span></li>
       </ul>
@@ -855,6 +1162,7 @@ dialog img{display:block;max-width:100%;max-height:70vh;margin:0 auto;background
         <li><span class="b lab">lab</span><span>Alert triage and source-IP investigation in Splunk and Wazuh.</span></li>
         <li><span class="b lab">lab</span><span>Intrusion detection with Suricata on OPNsense, and new-device monitoring with arpwatch.</span></li>
         <li><span class="b lab">lab</span><span>Analysed Windows Event Viewer, Sysmon, Linux, firewall and Docker logs.</span></li>
+        <li><span class="b concept">concept</span><span>A SIEM for the blue-team lab, with a written detection backlog mapped to MITRE ATT&amp;CK. <a href="#btir" data-btir-tab="detect">See the plan.</a></span></li>
         <li><span class="b studied">studied</span><span>Threat detection, SOAR concepts, and incident-response workflows.</span></li>
       </ul>
       <p class="tools"><strong>Tools:</strong> Elasticsearch, Kibana, Wazuh, Splunk, Suricata, Sysmon, MITRE ATT&amp;CK</p>
@@ -955,7 +1263,7 @@ dialog img{display:block;max-width:100%;max-height:70vh;margin:0 auto;background
       <div class="s"><h3>defensive security</h3><ul class="tags"><li>Elasticsearch and Kibana</li><li>Splunk</li><li>Wazuh</li><li>Suricata</li><li>Cowrie honeypot</li><li>Sysmon</li><li>Windows Event Logs</li><li>arpwatch</li><li>incident response</li><li>MITRE ATT&amp;CK</li><li>ISO 27001</li><li>GDPR</li></ul></div>
       <div class="s"><h3>digital forensics</h3><ul class="tags"><li>Autopsy</li><li>Sleuth Kit</li><li>Plaso</li><li>Timesketch</li><li>KAPE</li><li>Velociraptor</li><li>Registry analysis</li><li>file carving</li><li>malware analysis</li></ul></div>
       <div class="s"><h3>firewalls and network</h3><ul class="tags"><li>Palo Alto Networks</li><li>Cisco</li><li>pfSense</li><li>OPNsense</li><li>firewall policies</li><li>NAT</li><li>VLANs</li><li>OpenVPN</li><li>WireGuard</li><li>Wireshark</li><li>tcpdump</li><li>TCP/IP</li><li>DNS</li><li>DHCP</li></ul></div>
-      <div class="s"><h3>servers and identity</h3><ul class="tags"><li>Windows Server</li><li>Active Directory</li><li>Group Policy</li><li>LAPS</li><li>Kerberos</li><li>LDAP</li><li>Linux hardening</li><li>nftables</li><li>SSH</li><li>Nginx</li><li>Apache</li><li>HAProxy</li><li>MariaDB</li></ul></div>
+      <div class="s"><h3>servers and identity</h3><ul class="tags"><li>Windows Server</li><li>Active Directory</li><li>Group Policy</li><li>LAPS</li><li>Kerberos</li><li>LDAP</li><li>Linux hardening</li><li>nftables</li><li>SSH</li><li>Nginx</li><li>restic</li><li>Unbound DNS</li><li>OpenPLC and FUXA</li><li>Apache</li><li>HAProxy</li><li>MariaDB</li></ul></div>
       <div class="s"><h3>virtualisation and cloud</h3><ul class="tags"><li>Proxmox VE, including nested</li><li>VMware and ESXi</li><li>Kubernetes</li><li>Talos Linux</li><li>Docker</li><li>AWS</li><li>Azure and Azure Firewall</li><li>Google Cloud</li><li>Entra ID</li><li>Microsoft 365</li></ul></div>
       <div class="s"><h3>automation and code</h3><ul class="tags"><li>Ansible</li><li>Python</li><li>Bash</li><li>PowerShell</li><li>PHP and Laravel</li><li>Kotlin</li><li>JavaScript</li><li>Git</li><li>GitLab CI/CD</li></ul></div>
       <div class="s"><h3>ai and llms</h3><ul class="tags"><li>Ollama</li><li>Claude and Claude Code</li><li>ChatGPT</li><li>DeepSeek</li><li>Kimi</li><li>Perplexity</li></ul></div>
@@ -980,7 +1288,7 @@ dialog img{display:block;max-width:100%;max-height:70vh;margin:0 auto;background
 </section>
 </main>
 
-<footer class="footer"><div class="wrap">Muhammad Shayan Gul, Bruges, Belgium. Updated October 2026.</div></footer>
+<footer class="footer"><div class="wrap">Muhammad Shayan Gul, Bruges, Belgium. Updated November 2026.</div></footer>
 
 <dialog id="lb" aria-label="Image viewer">
   <img id="lb-img" alt="">
@@ -1033,7 +1341,9 @@ dialog img{display:block;max-width:100%;max-height:70vh;margin:0 auto;background
       b.addEventListener('click',function(){
         var f=b.getAttribute('data-f');
         btns.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false');});
-        items.forEach(function(it){it.hidden=!(f==='all'||it.getAttribute('data-a')===f);});
+        items.forEach(function(it){it.hidden=!(f==='all'||it.getAttribute('data-a')===f||it.getAttribute('data-id')===f);});
+        var one=items.filter(function(it){return it.getAttribute('data-id')===f;})[0];
+        if(one&&one.tagName==='DETAILS'){one.open=true;}
       });
     });
   }
@@ -1133,7 +1443,7 @@ dialog img{display:block;max-width:100%;max-height:70vh;margin:0 auto;background
     var el=document.getElementById(id);
     if(el){el.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});}
   }
-  var sections=['start','pentest','projects','proof','labs','certs','skills','about','contact'];
+  var sections=['btir','start','pentest','projects','proof','labs','certs','skills','about','contact'];
 
   var commands={
     help:function(){
@@ -1253,7 +1563,7 @@ dialog img{display:block;max-width:100%;max-height:70vh;margin:0 auto;background
       line('Opening contact...','ok');
       goTo('contact');return;
     }
-    if(low==='ls'){line('start  pentest  projects  proof  labs  certs  skills  about  contact','dim');return;}
+    if(low==='ls'){line('btir  start  pentest  projects  proof  labs  certs  skills  about  contact','dim');return;}
     if(low==='pwd'){line('/home/shayan/portfolio','dim');return;}
     if(low.indexOf('sudo')===0){line('Nice try. This portfolio is read-only. Try: sudo hire shayan','warn');return;}
     line('command not found: '+cmd.split(' ')[0]+'. Type help.','warn');
@@ -1302,6 +1612,198 @@ dialog img{display:block;max-width:100%;max-height:70vh;margin:0 auto;background
     },350+bootLines.length*420+300));
   }
 })();
+</script>
+<script>
+/* ---------- blue-team lab: interactive topology ---------- */
+(function(){
+  var svg=document.getElementById('labsvg'); if(!svg){return;}
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var panel=document.getElementById('npanel');
+  var nodeEls=[].slice.call(svg.querySelectorAll('.nd'));
+  var lineEls=[].slice.call(svg.querySelectorAll('.ln[data-needs]'));
+  var selected=null;
+
+  var EVL={'isp-services':'Open screenshot: ISP services','firewall-log':'Open screenshot: would-drop log','ad-promotion':'Open screenshot: domain pre-check','dns-manager':'Open screenshot: DNS zones','backup-retention':'Open screenshot: restic retention','web-dashboard':'Open screenshot: dashboard','hmi':'Open screenshot: HMI view','plc-logs':'Open screenshot: PLC log','reachability':'Open screenshot: reachability check'};
+
+  var DATA={
+    'isp':{name:'ISP, the fake internet',status:'built',os:'Linux (OpenRC)',role:'Plays the internet between the three sites.',
+      did:['Loaded firewall rules with nftables.','Runs Unbound as the DNS resolver that answers for the company names.','SSH, NTP and cron services are running.'],
+      verified:'rc-status shows nftables, unbound and sshd started, and a lookup through it returns the company names.',
+      open:['Send firewall and DNS logs to the SIEM.'],ev:['isp-services']},
+    'home-router':{name:'Home router',status:'built',os:'Alpine Linux',role:'Gateway for the home site.',
+      did:['Two interfaces: one towards the ISP, one for the home LAN.','Static addresses and a default route through the ISP.','Installed its tools with apk (nano, vim, curl).'],
+      verified:'ip route and the interface file on the router.',
+      open:['Send router logs to the SIEM.'],ev:[]},
+    'company-router':{name:'Company router',status:'built',os:'Debian',role:'Gateway and firewall for the company site.',
+      did:['A link to the ISP and separate internal interfaces for servers and clients.','Logs the traffic its policy would drop, and summarises it by interface, source, destination and port.','That log lets rules be reviewed before they are enforced.'],
+      verified:'The would-drop summary on the router, and its neighbour tables per interface.',
+      open:['Move from would-drop logging to an enforced policy, step by step.','Send the firewall log to the SIEM.'],ev:['firewall-log']},
+    'factory-router':{name:'Factory router',status:'built',os:'Linux',role:'The boundary between the factory (OT) network and the rest of the lab.',
+      did:['Joins the factory network to the ISP.','The HMI and PLC behind it answer the reachability checks.'],
+      verified:'The reachability script lists the factory router and the hosts behind it.',
+      open:['Define which IT-to-OT flows are allowed, and test them from Kali.','Log every connection across this boundary.'],ev:['reachability']},
+    'home-client':{name:'Home client',status:'built',os:'Linux',role:'A user on the home network.',
+      did:['Runs a small script that checks every host in the lab answers.','Resolves company names through the ISP DNS.'],
+      verified:'The script output lists every host as reachable. Addresses are cropped out of the screenshot.',
+      open:[],ev:['reachability']},
+    'dc01':{name:'DC01, the domain controller',status:'built',os:'Windows Server',role:'Active Directory and DNS for the company domain.',
+      did:['Installed Active Directory Domain Services with PowerShell and ran the forest pre-check before promotion.','DNS zones for the company domain.','Reachable for remote management over WinRM with a domain account.'],
+      verified:'PowerShell pre-check output, DNS Manager, and a WinRM test from a client.',
+      open:['Collect its Security log in the SIEM (see the detection plan).','Review privileged groups and delegation.'],ev:['ad-promotion','dns-manager']},
+    'web':{name:'Web server',status:'built',os:'Linux',role:'The front end of the company site.',
+      did:['Serves the company site through nginx with its own site configuration.','Serves the web app over HTTPS with certificates.','Backed up every hour with restic: site files and nginx configuration, tagged separately.'],
+      verified:'restic snapshots and a retention dry run on this machine.',
+      open:['Send nginx access and error logs to the SIEM.','Test a restore.'],ev:['backup-retention']},
+    'app-2':{name:'App server',status:'built',os:'AlmaLinux 10.2',role:'An application server in the company site.',
+      did:['Installed with a static address and the domain controller as its DNS server.','Its application port answers a TCP test from the domain controller.'],
+      verified:'Installer network settings, and a Test-NetConnection result of True.',
+      open:['Forward its logs to the SIEM.'],ev:[]},
+    'db-app-1':{name:'App and database server',status:'built',os:'Linux',role:'Hosts the employee app and the customer database.',
+      did:['Serves the employee login and the customer dashboard.','Dumps the database every hour and stores the dump with restic, tagged db.'],
+      verified:'The login page and dashboard, and restic snapshots tagged db.',
+      open:['Test a restore of the database dump.'],ev:['web-dashboard']},
+    'win-client':{name:'Windows 11 client',status:'built',os:'Windows 11',role:'An employee workstation.',
+      did:['Remote management tools for DNS installed (RSAT).','Remote management of the domain controller tested with a domain account.'],
+      verified:'Test-WSMan against the domain controller returns the WinRM identity.',
+      open:['Forward Windows event logs to the SIEM.'],ev:[]},
+    'hmi':{name:'HMI',status:'built',os:'Alpine Linux',role:'The operator screen for the factory process.',
+      did:['Runs FUXA, a web-based HMI.','Built a process view with a heater temperature gauge, a fan control and an alarm.'],
+      verified:'The FUXA editor and process view.',
+      open:['Restrict who can reach the HMI from the IT network, and test it from Kali.'],ev:['hmi']},
+    'plc':{name:'PLC',status:'built',os:'Alpine Linux',role:'A soft PLC for the factory process.',
+      did:['Runs the OpenPLC runtime in Docker.','The PLC state is running, and its main task scans every 500 ms.','A health check calls the runtime API about every 30 seconds.'],
+      verified:'The Docker log of the runtime.',
+      open:['Capture the HMI to PLC traffic for the SIEM.'],ev:['plc-logs']},
+    'kali':{name:'Attacker (Kali Linux)',status:'built',os:'Kali Linux',role:'The attacker machine for the exercises.',
+      did:['The attacker VM is set up for the attack side of the exercises.'],
+      verified:'The VM runs in the lab and its network interface is up.',
+      open:['Run the attack exercises against the company site.','Record what the SIEM sees, and write up the findings.'],ev:[]},
+    'backup-vm':{name:'Backup VM',status:'built',os:'Linux',role:'The backup side of the lab.',
+      did:['A dedicated VM set up for the backup side of the lab.'],
+      verified:'Present and running in the VM inventory.',
+      open:['Test a restore from it.'],ev:[]}
+  };
+
+  function el(tag,cls,txt){var e=document.createElement(tag); if(cls){e.className=cls;} if(txt!==undefined){e.textContent=txt;} return e;}
+  function block(title,items){
+    var f=el('div','np-col');
+    f.appendChild(el('p','np-h',title));
+    var ul=el('ul'); items.forEach(function(t){ul.appendChild(el('li',null,t));}); f.appendChild(ul);
+    return f;
+  }
+  function render(id){
+    var n=DATA[id]; panel.textContent='';
+    var head=el('div','np-head');
+    head.appendChild(el('span','b '+(n.status==='built'?'built':'wip'),n.status==='built'?'built':'in progress'));
+    head.appendChild(el('span',null,n.os));
+    panel.appendChild(head);
+    panel.appendChild(el('h3','np-title',n.name));
+    panel.appendChild(el('p','np-role',n.role));
+    var cols=el('div','np-cols');
+    cols.appendChild(block('What I did',n.did));
+    cols.appendChild(block('How I checked it',[n.verified]));
+    cols.appendChild(block('Still open',n.open.length?n.open:['Nothing noted yet.']));
+    panel.appendChild(cols);
+    if(n.ev.length){
+      var row=el('div','np-ev');
+      n.ev.forEach(function(k){
+        var b=el('button',null,EVL[k]||'Open screenshot'); b.type='button';
+        b.addEventListener('click',function(){var t=document.querySelector('.shots [data-ev="'+k+'"]'); if(t){t.click();}});
+        row.appendChild(b);
+      });
+      panel.appendChild(row);
+    }
+  }
+  function clearSel(){
+    selected=null;
+    nodeEls.forEach(function(x){x.classList.remove('sel');x.removeAttribute('aria-pressed');});
+    panel.textContent='';
+    panel.appendChild(el('p','np-hint','Select a machine in the diagram. Each one lists what I configured, how I checked it, and what is still open. Where a screenshot exists, you can open it from here.'));
+  }
+  function select(g){
+    var id=g.getAttribute('data-id');
+    nodeEls.forEach(function(x){var on=x===g; x.classList.toggle('sel',on); if(on){x.setAttribute('aria-pressed','true');}else{x.removeAttribute('aria-pressed');}});
+    selected=g; render(id);
+  }
+  nodeEls.forEach(function(g){
+    g.addEventListener('click',function(){select(g);});
+    g.addEventListener('keydown',function(e){
+      if(e.key==='Enter'||e.key===' '){e.preventDefault();select(g);}
+      else if(e.key==='Escape'){clearSel();}
+    });
+  });
+
+  /* ----- lens ----- */
+  var LENS={
+    all:'Select a machine in the diagram, or use the slider to replay the build.',
+    arch:'Architecture: three sites behind their own routers, joined by an ISP, with identity (AD and DNS) at the centre of the company site.',
+    off:'Offensive: where an attacker would look first. Identity, the web tier, remote administration and the boundary between IT and OT.',
+    det:'Detection: the machines whose logs a SIEM would need first. The domain controller, firewalls, web and application servers.',
+    res:'Resilience: what is backed up and where recovery would start. Restore tests are still to do.',
+    ot:'OT and ICS: the factory network, its router, and the HMI and PLC behind it.'
+  };
+  var lensBar=document.getElementById('lens'), lensNote=document.getElementById('lens-note');
+  var lensBtns=[].slice.call(lensBar.querySelectorAll('button'));
+  lensBtns.forEach(function(b){
+    b.addEventListener('click',function(){
+      var l=b.getAttribute('data-lens');
+      lensBtns.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false');});
+      nodeEls.forEach(function(g){
+        var has=(' '+g.getAttribute('data-lens')+' ').indexOf(' '+l+' ')>-1;
+        g.classList.toggle('dim',l!=='all'&&!has);
+      });
+      lensNote.textContent=LENS[l];
+    });
+  });
+
+  /* ----- replay ----- */
+  var STEPS=[
+    ['Oct 12','The home router is configured: two interfaces, static addressing and a default route. Its tools are installed with apk.'],
+    ['Oct 13','Active Directory Domain Services is installed on DC01, and the forest pre-check passes.'],
+    ['Oct 23','The employee web app answers on its internal address. An AlmaLinux server is installed with the domain controller as its DNS server.'],
+    ['Oct 25','A reachability script now covers all three sites. The ISP firewall and DNS services start, and the customer dashboard works.'],
+    ['Oct 26','The OpenPLC runtime runs and the FUXA process view is built. Web and application ports are tested from the domain controller, and company names resolve through the ISP.'],
+    ['Oct 27','DNS zones are checked on the domain controller, WinRM works with a domain account, and the company router starts logging would-drop traffic.'],
+    ['Oct 28','restic backups run with a retention policy, and the Kali attacker VM is prepared.']
+  ];
+  var range=document.getElementById('rp-range'), dateEl=document.getElementById('rp-date'), textEl=document.getElementById('rp-text'), playBtn=document.getElementById('rp-play');
+  var last=STEPS.length-1, timer=null;
+  function setStep(i){
+    range.value=i; dateEl.textContent=STEPS[i][0];
+    textEl.textContent='';
+    var s=el('strong',null,STEPS[i][0]+'. '); textEl.appendChild(s); textEl.appendChild(document.createTextNode(STEPS[i][1]));
+    nodeEls.forEach(function(g){g.classList.toggle('off',+g.getAttribute('data-first')>i);});
+    lineEls.forEach(function(l){
+      var ok=l.getAttribute('data-needs').split(' ').every(function(id){var n=svg.querySelector('.nd[data-id="'+id+'"]'); return n&&!n.classList.contains('off');});
+      l.classList.toggle('off',!ok);
+    });
+    if(selected&&selected.classList.contains('off')){clearSel();}
+  }
+  function stop(){if(timer){clearInterval(timer);timer=null;} playBtn.textContent='Replay the build';}
+  playBtn.addEventListener('click',function(){
+    if(timer){stop();return;}
+    if(+range.value>=last){setStep(0);}
+    playBtn.textContent='Pause';
+    timer=setInterval(function(){var n=+range.value+1; if(n>last){stop();return;} setStep(n);},1600);
+  });
+  range.addEventListener('input',function(){stop();setStep(+range.value);});
+  range.max=last; setStep(last);
+
+  /* ----- tabs ----- */
+  var tabBar=document.getElementById('tabsb'), tabBtns=[].slice.call(tabBar.querySelectorAll('button'));
+  function selectPanel(p){
+    tabBtns.forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-p')===p?'true':'false');});
+    ['notes','detect','gaps','resil','plan'].forEach(function(k){var e=document.getElementById('tp-'+k); if(e){e.hidden=(k!==p);}});
+  }
+  tabBtns.forEach(function(b){b.addEventListener('click',function(){selectPanel(b.getAttribute('data-p'));});});
+  [].slice.call(document.querySelectorAll('[data-btir-tab]')).forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault(); selectPanel(a.getAttribute('data-btir-tab'));
+      tabBar.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});
+    });
+  });
+})();
+
 </script>
 </body>
 </html>
